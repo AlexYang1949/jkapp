@@ -1,0 +1,28 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.jk.wyq.jkapp.BaseModule.HomeFragment">
+
+
+    <Button
+        android:id="@+id/heartBeat"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:layout_weight="1"
+        android:text="心跳" />
+
+    <Button
+        android:id="@+id/step"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:layout_weight="1"
+        android:text="步数" />
+
+    <Button
+        android:id="@+id/jktest"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:layout_weight="1"
+        android:text="健康测试" />
+</LinearLayout>
