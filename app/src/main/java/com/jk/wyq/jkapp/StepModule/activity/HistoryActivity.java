@@ -57,8 +57,8 @@ public class HistoryActivity extends AppCompatActivity {
         if(DbUtils.getLiteOrm()==null){
             DbUtils.createDb(this, "jingzhi");
         }
-        List<StepData> stepDatas =DbUtils.getQueryAll(StepData.class);
-        lv.setAdapter(new CommonAdapter<StepData>(this,stepDatas,R.layout.item) {
+        List<StepData> stepDatas = DbUtils.getQueryAll(StepData.class);
+        lv.setAdapter(new CommonAdapter<StepData>(this,stepDatas,R.layout.item_step_history) {
             @Override
             protected void convertView(View item, StepData stepData) {
                 TextView tv_date= CommonViewHolder.get(item,R.id.tv_date);

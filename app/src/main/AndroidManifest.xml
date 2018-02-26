@@ -18,9 +18,10 @@
         android:name="android.hardware.sensor.stepdetector"
         android:required="true" />
 
-    <!--测心跳-->
+    <!-- 测心跳 -->
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.CAMERA" />
+
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
 
@@ -78,7 +79,12 @@
             </intent-filter>
         </service>
 
-        <activity android:name=".HeartBeatModule.HeartBeatActivity"></activity>
+        <activity android:name=".HeartBeatModule.HeartBeatActivity" />
+        <activity android:name=".HealthModule.HealthSelectActivity" />
+        <activity android:name=".HealthModule.BaseHealthActivity" />
+        <activity android:name=".HealthModule.AdvanceHealthActivity" />
+        <activity android:name=".HealthModule.HealthResultActivity" />
+        <activity android:name=".UserModule.LoginActivity"></activity>
     </application>
 
 </manifest>

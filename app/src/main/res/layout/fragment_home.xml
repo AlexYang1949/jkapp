@@ -2,27 +2,40 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.jk.wyq.jkapp.BaseModule.HomeFragment">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/heartBeat"
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:layout_weight="1"
+            android:text="心跳" />
 
-    <Button
-        android:id="@+id/heartBeat"
-        android:layout_width="wrap_content"
-        android:layout_height="100dp"
-        android:layout_weight="1"
-        android:text="心跳" />
+        <Button
+            android:id="@+id/step"
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:layout_weight="1"
+            android:text="步数" />
 
-    <Button
-        android:id="@+id/step"
-        android:layout_width="wrap_content"
-        android:layout_height="100dp"
-        android:layout_weight="1"
-        android:text="步数" />
 
-    <Button
-        android:id="@+id/jktest"
-        android:layout_width="wrap_content"
-        android:layout_height="100dp"
-        android:layout_weight="1"
-        android:text="健康测试" />
+
+        <Button
+            android:id="@+id/jktest"
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:layout_weight="1"
+            android:text="健康测试" />
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1" />
 </LinearLayout>

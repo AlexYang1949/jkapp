@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.jk.wyq.jkapp.HealthModule.HealthSelectActivity;
 import com.jk.wyq.jkapp.HeartBeatModule.HeartBeatActivity;
 import com.jk.wyq.jkapp.R;
 import com.jk.wyq.jkapp.StepModule.activity.StepActivity;
@@ -47,6 +48,14 @@ public class HomeFragment extends Fragment {
                 gotoStepAct();
             }
         });
+
+        jkBtn = (Button)view.findViewById(R.id.jktest);
+        jkBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                gotoJKTest();
+            }
+        });
         return view;
     }
 
@@ -59,6 +68,11 @@ public class HomeFragment extends Fragment {
     // 跳转记步activity
     private  void gotoStepAct(){
         Intent intent = new Intent(getActivity(), StepActivity.class);
+        startActivity(intent);
+    }
+    // 跳转健康测试activity
+    private  void gotoJKTest(){
+        Intent intent = new Intent(getActivity(), HealthSelectActivity.class);
         startActivity(intent);
     }
 
