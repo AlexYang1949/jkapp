@@ -15,27 +15,13 @@ public class SharedPreferencesUtils {
 	/**
 	 * 保存在手机里面的文件名
 	 */
-	private String FILE_NAME = "share_date";
+	private String filename ;
 
-	// public static SharedPreferencesUtils getInstens(String fileName) {
-	// FILE_NAME = fileName;
-	// if (sharedPreferencesUtils == null) {
-	// synchronized (SharedPreferencesUtils.class) {
-	// if (sharedPreferencesUtils == null) {
-	// sharedPreferencesUtils = new SharedPreferencesUtils();
-	// }
-	// }
-	// }
-	// return sharedPreferencesUtils;
-	// }
 
-	public SharedPreferencesUtils(String FILE_NAME) {
-		this.FILE_NAME = FILE_NAME;
 
-	}
-	public SharedPreferencesUtils(Context context) {
-	this.context=context;
-
+	public SharedPreferencesUtils(Context context,String filename) {
+		this.context=context;
+		this.filename = filename;
 	}
 	/**
 	 * 保存数据的方法，我们需要拿到保存数据的具体类型，然后根据类型调用不同的保存方法
@@ -46,7 +32,7 @@ public class SharedPreferencesUtils {
 	public void setParam(String key, Object object) {
 
 		String type = object.getClass().getSimpleName();
-		SharedPreferences sp = context.getSharedPreferences(FILE_NAME,
+		SharedPreferences sp = context.getSharedPreferences(filename,
 				Context.MODE_MULTI_PROCESS);
 		SharedPreferences.Editor editor = sp.edit();
 		if ("String".equals(type)) {
@@ -73,7 +59,7 @@ public class SharedPreferencesUtils {
 	 */
 	public Object getParam(String key, Object defaultObject) {
 		String type = defaultObject.getClass().getSimpleName();
-		SharedPreferences sp = context.getSharedPreferences(FILE_NAME,
+		SharedPreferences sp = context.getSharedPreferences(filename,
 				Context.MODE_PRIVATE);
 
 		if ("String".equals(type)) {
@@ -99,7 +85,7 @@ public class SharedPreferencesUtils {
 	 */
 	// Delete
 	public void remove( String key) {
-		SharedPreferences sp = context.getSharedPreferences(FILE_NAME,
+		SharedPreferences sp = context.getSharedPreferences(filename,
 				Context.MODE_PRIVATE);
 		SharedPreferences.Editor editor = sp.edit();
 		editor.remove(key);
@@ -107,7 +93,7 @@ public class SharedPreferencesUtils {
 	}
 
 	public void clear() {
-		SharedPreferences sp = context.getSharedPreferences(FILE_NAME,
+		SharedPreferences sp = context.getSharedPreferences(filename,
 				Context.MODE_PRIVATE);
 		SharedPreferences.Editor editor = sp.edit();
 		editor.clear();

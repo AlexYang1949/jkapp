@@ -54,14 +54,14 @@ public class SetPlanActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.ac_exercise_plan);
+        setContentView(R.layout.activity_plan);
         assignViews();
         initData();
         addListener();
     }
 
     public void initData() {//获取锻炼计划
-        sp = new SharedPreferencesUtils(this);
+        sp = new SharedPreferencesUtils(this,"stepplan");
         String planWalk_QTY = (String) sp.getParam("planWalk_QTY", "7000");
         String remind = (String) sp.getParam("remind", "1");
         String achieveTime = (String) sp.getParam("achieveTime", "20:00");
@@ -132,7 +132,7 @@ public class SetPlanActivity extends AppCompatActivity implements View.OnClickLi
         } else {
             sp.setParam("achieveTime", achieveTime);
         }
-                finish();
+        finish();
     }
 
     private void showTimeDialog1() {

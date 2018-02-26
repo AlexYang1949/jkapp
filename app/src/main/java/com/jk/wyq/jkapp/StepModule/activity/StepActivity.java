@@ -49,7 +49,7 @@ public class StepActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void initData() {
-        sp = new SharedPreferencesUtils(this);
+        sp = new SharedPreferencesUtils(this,"stepplan");
         //获取用户设置的计划锻炼步数，没有设置过的话默认7000
         String planWalk_QTY = (String) sp.getParam("planWalk_QTY", "7000");
         //设置当前步数为0

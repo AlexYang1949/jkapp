@@ -16,13 +16,13 @@ public class HealthSelectActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_health_select);
-        baseBtn = findViewById(R.id.baseBtn);
-        baseBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                gotoBaseHealth();
-            }
-        });
+//        baseBtn = findViewById(R.id.baseBtn);
+//        baseBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                gotoBaseHealth();
+//            }
+//        });
 
         advanceBtn = findViewById(R.id.advanceBtn);
         advanceBtn.setOnClickListener(new View.OnClickListener() {
@@ -33,7 +33,7 @@ public class HealthSelectActivity extends AppCompatActivity {
         });
     }
 
-    private void gotoBaseHealth(){
+    public void gotoBaseHealth(View view){
         Intent intent = new Intent(this, BaseHealthActivity.class);
         startActivity(intent);
     }

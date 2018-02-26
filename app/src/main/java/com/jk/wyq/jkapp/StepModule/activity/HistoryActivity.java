@@ -41,7 +41,7 @@ public class HistoryActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.ac_history);
+        setContentView(R.layout.activity_history);
         assignViews();
         iv_left.setOnClickListener(new View.OnClickListener() {
             @Override

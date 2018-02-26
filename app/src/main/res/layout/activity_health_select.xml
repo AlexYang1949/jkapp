@@ -11,6 +11,7 @@
         android:id="@+id/baseBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:onClick="gotoBaseHealth"
         android:text="基础测试" />
 
     <Button

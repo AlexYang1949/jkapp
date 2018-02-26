@@ -1,6 +1,7 @@
 package com.jk.wyq.jkapp.BaseModule;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.litesuits.orm.LiteOrm;
 import com.litesuits.orm.db.assit.QueryBuilder;
@@ -17,9 +18,17 @@ public class DbUtils {
     public static String DB_NAME;
     public static LiteOrm liteOrm;
 
+    public DbUtils(Context _activity,String DB_NAME){
+        if (liteOrm == null) {
+            Log.i("DB_utils", DB_NAME);
+            liteOrm = LiteOrm.newCascadeInstance(_activity, DB_NAME);
+            liteOrm.setDebugged(true);
+        }
+    }
     public static void createDb(Context _activity, String DB_NAME) {
         DB_NAME = DB_NAME + ".db";
         if (liteOrm == null) {
+            Log.i("DB_utils", DB_NAME);
             liteOrm = LiteOrm.newCascadeInstance(_activity, DB_NAME);
             liteOrm.setDebugged(true);
         }
