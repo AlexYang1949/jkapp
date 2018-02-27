@@ -6,15 +6,22 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.Toast;
 
 import com.jk.wyq.jkapp.R;
+
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class MineFragment extends Fragment {
 
-
+    ListView listView;
+    private String[] mListStr = {"测试历史","今日运动","退出登录"};
     public MineFragment() {
         // Required empty public constructor
     }
@@ -22,8 +29,20 @@ public class MineFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_mine, container, false);
+        View view = inflater.inflate(R.layout.fragment_mine, container, false);
+        listView =  view.findViewById(R.id.listView);
+        listView.setAdapter(new ArrayAdapter<String>(getActivity(),
+                android.R.layout.activity_list_item, mListStr));
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position,
+                                    long id) {
+
+                Toast.makeText(getContext(),"您选择了" + mListStr[position], Toast.LENGTH_LONG).show();
+            }
+        });
+        return view;
     }
+
 
 }
