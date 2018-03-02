@@ -54,9 +54,8 @@ public class HistoryActivity extends AppCompatActivity {
 
     private void initData() {
         setEmptyView(lv);
-        if(DbUtils.getLiteOrm()==null){
-            DbUtils.createDb(this, "jingzhi");
-        }
+        DbUtils.createDb(this);
+
         List<StepData> stepDatas = DbUtils.getQueryAll(StepData.class);
         lv.setAdapter(new CommonAdapter<StepData>(this,stepDatas,R.layout.item_step_history) {
             @Override

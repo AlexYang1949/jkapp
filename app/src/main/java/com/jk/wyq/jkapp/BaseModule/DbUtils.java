@@ -15,28 +15,13 @@ import java.util.List;
  */
 public class DbUtils {
 
-    public static String DB_NAME;
     public static LiteOrm liteOrm;
 
-    public DbUtils(Context _activity,String DB_NAME){
+    public static void createDb(Context _activity) {
         if (liteOrm == null) {
-            Log.i("DB_utils", DB_NAME);
-            liteOrm = LiteOrm.newCascadeInstance(_activity, DB_NAME);
+            liteOrm = LiteOrm.newCascadeInstance(_activity, "health.db");
             liteOrm.setDebugged(true);
         }
-    }
-    public static void createDb(Context _activity, String DB_NAME) {
-        DB_NAME = DB_NAME + ".db";
-        if (liteOrm == null) {
-            Log.i("DB_utils", DB_NAME);
-            liteOrm = LiteOrm.newCascadeInstance(_activity, DB_NAME);
-            liteOrm.setDebugged(true);
-        }
-    }
-
-
-    public static LiteOrm getLiteOrm() {
-        return liteOrm;
     }
 
     /**

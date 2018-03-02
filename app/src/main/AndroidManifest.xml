@@ -25,6 +25,9 @@
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
 
+    <!--web-->
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -84,7 +87,8 @@
         <activity android:name=".HealthModule.BaseHealthActivity" />
         <activity android:name=".HealthModule.AdvanceHealthActivity" />
         <activity android:name=".HealthModule.HealthResultActivity" />
-        <activity android:name=".UserModule.LoginActivity"></activity>
+        <activity android:name=".UserModule.LoginActivity" />
+        <activity android:name=".BaseModule.WebActivity"></activity>
     </application>
 
 </manifest>

@@ -9,11 +9,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ListView;
 
 import com.jk.wyq.jkapp.HealthModule.HealthSelectActivity;
 import com.jk.wyq.jkapp.HeartBeatModule.HeartBeatActivity;
 import com.jk.wyq.jkapp.R;
 import com.jk.wyq.jkapp.StepModule.activity.StepActivity;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,7 +32,9 @@ public class HomeFragment extends Fragment {
     private Button hbBtn;
     private Button stepBtn;
     private Button jkBtn;
+    private ArrayList<HomeBean> dataList;
 
+    private ListView listView;
     public HomeFragment() {
         // Required empty public constructor
     }
@@ -56,9 +67,19 @@ public class HomeFragment extends Fragment {
                 gotoJKTest();
             }
         });
+
+        listView = (ListView)view.findViewById(R.id.listView);
+        initData();
         return view;
     }
 
+    private  void initData(){
+        dataList = new ArrayList<>();
+        HomeBean home = new HomeBean(1,1000);
+        dataList.add(home);
+        HomeAdapter adapter = new HomeAdapter(getActivity(), dataList);
+        listView.setAdapter(adapter);
+    }
 
     // 跳转心跳activity
     private void gotoHeartBeatAct(){
