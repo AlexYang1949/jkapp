@@ -1,6 +1,7 @@
 package com.jk.wyq.jkapp.BaseModule;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,7 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.jk.wyq.jkapp.R;
-import org.json.JSONObject;
+
 
 import java.util.List;
 
@@ -50,9 +51,9 @@ public class HomeAdapter extends BaseAdapter {
         HomeBean bean = dataList.get(i);
         int type = bean.getType();
         if (type==TYPE_STEP){
-            view = inflater.inflate(R.layout.item_home_weather, null);
+            view = inflater.inflate(R.layout.item_home_step, null);
             TextView finish = (TextView) view.findViewById(R.id.finish);
-            finish.setText(bean.getStep());
+            finish.setText(String.valueOf(bean.getStep()));
         }
         return view;
     }
