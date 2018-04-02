@@ -8,8 +8,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.jk.wyq.jkapp.HealthModule.HealthSelectActivity;
 import com.jk.wyq.jkapp.HeartBeatModule.HeartBeatActivity;
@@ -18,6 +20,8 @@ import com.jk.wyq.jkapp.StepModule.activity.StepActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import com.jk.wyq.jkapp.BaseModule.HomeAdapter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -75,10 +79,26 @@ public class HomeFragment extends Fragment {
 
     private  void initData(){
         dataList = new ArrayList<>();
-        HomeBean home = new HomeBean(1,1000);
-        dataList.add(home);
+
+        HomeBean home1 = new HomeBean(1,1000);
+        HomeBean home2 = new HomeBean(2,1000);
+        HomeBean home3 = new HomeBean(3,1000);
+        HomeBean home4 = new HomeBean(4,"睡觉","22:00");
+        HomeBean home5 = new HomeBean(4,"喝水","19:00");
+        dataList.add(home1);
+        dataList.add(home2);
+        dataList.add(home3);
+        dataList.add(home4);
+        dataList.add(home5);
         HomeAdapter adapter = new HomeAdapter(getActivity(), dataList);
         listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position,
+                                    long id) {
+                Toast.makeText(getContext(),"您选择了" + dataList.get(position), Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     // 跳转心跳activity

@@ -9,10 +9,21 @@ public class HomeBean {
 
     private int step;
 
+    private String tip;
+
+    private String time;
+
     public HomeBean(int type,int step){
         this.type = type;
         this.step = step;
     }
+
+    public HomeBean(int type,String tip,String time){
+        this.type = type;
+        this.tip = tip;
+        this.time = time;
+    }
+
 
     public int getType() {
         return type;
@@ -20,5 +31,13 @@ public class HomeBean {
 
     public int getStep() {
         return step;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public String getTip() {
+        return tip;
     }
 }

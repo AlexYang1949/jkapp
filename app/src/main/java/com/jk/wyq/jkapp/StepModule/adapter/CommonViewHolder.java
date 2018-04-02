@@ -10,7 +10,7 @@ import android.view.View;
  *
  * @author
  */
-public class CommonViewHolder {
+public class CommonViewHolder{
     /**
      * @param view 所有缓存View的根View
      * @param id   缓存View的唯一标识

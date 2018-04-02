@@ -57,7 +57,7 @@ public class HistoryActivity extends AppCompatActivity {
         DbUtils.createDb(this);
 
         List<StepData> stepDatas = DbUtils.getQueryAll(StepData.class);
-        lv.setAdapter(new CommonAdapter<StepData>(this,stepDatas,R.layout.item_step_history) {
+        lv.setAdapter(new CommonAdapter<StepData>(this,stepDatas,R.layout.item_history_step) {
             @Override
             protected void convertView(View item, StepData stepData) {
                 TextView tv_date= CommonViewHolder.get(item,R.id.tv_date);

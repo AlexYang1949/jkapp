@@ -35,26 +35,28 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".BaseModule.MainActivity">
+        <activity android:name=".BaseModule.MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".StepModule.activity.StepActivity" />
+        <activity android:name=".StepModule.activity.StepActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".StepModule.activity.SetPlanActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".StepModule.activity.HistoryActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:screenOrientation="portrait"/>
 
         <service
             android:name=".StepModule.step.service.StepService"
             android:priority="1000">
             <intent-filter>
-
                 <!-- 系统启动完成后会调用 -->
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.intent.action.DATE_CHANGED" />
@@ -70,7 +72,6 @@
             android:priority="1000"
             android:process="cn.bluemobi.dylan.step..pedometer.StepsDetectService">
             <intent-filter>
-
                 <!-- 系统启动完成后会调用 -->
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.intent.action.DATE_CHANGED" />
@@ -82,13 +83,20 @@
             </intent-filter>
         </service>
 
-        <activity android:name=".HeartBeatModule.HeartBeatActivity" />
-        <activity android:name=".HealthModule.HealthSelectActivity" />
-        <activity android:name=".HealthModule.BaseHealthActivity" />
-        <activity android:name=".HealthModule.AdvanceHealthActivity" />
-        <activity android:name=".HealthModule.HealthResultActivity" />
-        <activity android:name=".UserModule.LoginActivity" />
-        <activity android:name=".BaseModule.WebActivity"></activity>
+        <activity android:name=".HeartBeatModule.HeartBeatActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".HealthModule.HealthSelectActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".HealthModule.BaseHealthActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".HealthModule.AdvanceHealthActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".HealthModule.HealthResultActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".UserModule.LoginActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".BaseModule.WebActivity"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

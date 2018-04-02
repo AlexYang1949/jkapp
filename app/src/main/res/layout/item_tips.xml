@@ -3,16 +3,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:layout_marginLeft="10dp"
-    android:layout_marginTop="20dp"
-    android:layout_marginRight="10dp">
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp"
+    android:background="@color/bg_white"
+    >
 
     <TextView
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="title"
-        android:textSize="18sp" />
+        android:textSize="24sp"
+        android:paddingTop="15dp"
+        android:textColor="@color/red"
+        android:layout_marginBottom="15dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,13 +27,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="来源" />
+            android:text="来源:39健康网" />
         <TextView
             android:id="@+id/time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="时间" />
+            android:text="时间：2018-03-35" />
     </LinearLayout>
 
     <TextView
@@ -37,7 +41,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="内容"
-        android:textSize="24sp" />
-
+        android:textSize="18sp"
+        android:paddingBottom="20dp"
+        android:layout_marginTop="8dp"/>
 
 </LinearLayout>

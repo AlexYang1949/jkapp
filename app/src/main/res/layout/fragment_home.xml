@@ -3,39 +3,88 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/bg_gray"
     tools:context="com.jk.wyq.jkapp.BaseModule.HomeFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <Button
-            android:id="@+id/heartBeat"
+        android:orientation="horizontal"
+        android:paddingBottom="15dp"
+        android:background="@color/bg_white">
+        <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="100dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="心跳" />
+            android:background="@color/bg_white">
+            <Button
+                android:id="@+id/heartBeat"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentTop="true"
+                android:background="@mipmap/home_heart"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/heartBeat"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="6dp"
+                android:text="心跳检测"/>
+        </RelativeLayout>
 
-        <Button
-            android:id="@+id/step"
+        <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="100dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="步数" />
+            android:background="@color/bg_white">
+            <Button
+                android:id="@+id/step"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentTop="true"
+                android:background="@mipmap/home_step"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/step"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="6dp"
+                android:text="测步数"/>
+        </RelativeLayout>
 
-
-
-        <Button
-            android:id="@+id/jktest"
+        <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="100dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="健康测试" />
+            android:background="@color/bg_white">
+            <Button
+                android:id="@+id/jktest"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentTop="true"
+                android:background="@mipmap/home_genral"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/jktest"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="6dp"
+                android:text="健康测试"/>
+        </RelativeLayout>
+
     </LinearLayout>
 
     <ListView
         android:id="@+id/listView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1" />
+        android:divider="@color/bg_gray"
+        android:dividerHeight="18dp"
+        android:layout_marginTop="20dp" />
 </LinearLayout>

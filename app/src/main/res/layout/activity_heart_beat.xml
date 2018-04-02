@@ -23,6 +23,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="50dp"
+        android:textSize="30dp"
+        android:textColor="@color/red"
+        android:layout_weight="1">
+    </TextView>
+
+    <TextView
+        android:id="@+id/id_tv_test"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
         android:layout_weight="1">
     </TextView>
 

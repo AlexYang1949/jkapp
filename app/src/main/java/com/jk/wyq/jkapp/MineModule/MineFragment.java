@@ -21,7 +21,7 @@ import java.util.List;
 public class MineFragment extends Fragment {
 
     ListView listView;
-    private String[] mListStr = {"测试历史","今日运动","退出登录"};
+    private String[] mListStr = {"打卡记录","测试历史","今日运动","健康商城","退出登录"};
     public MineFragment() {
         // Required empty public constructor
     }
@@ -32,12 +32,11 @@ public class MineFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_mine, container, false);
         listView =  view.findViewById(R.id.listView);
         listView.setAdapter(new ArrayAdapter<String>(getActivity(),
-                android.R.layout.activity_list_item, mListStr));
+                android.R.layout.simple_list_item_activated_1, mListStr));
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position,
                                     long id) {
-
                 Toast.makeText(getContext(),"您选择了" + mListStr[position], Toast.LENGTH_LONG).show();
             }
         });

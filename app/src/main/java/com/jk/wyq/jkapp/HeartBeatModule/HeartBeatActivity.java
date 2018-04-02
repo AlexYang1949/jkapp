@@ -67,6 +67,7 @@ public class HeartBeatActivity extends Activity {
     private static Camera camera = null;
     //private static View image = null;
     private static TextView mTV_Heart_Rate = null;
+    private static TextView mTV_Heart_Test = null;
     private static TextView mTV_Avg_Pixel_Values = null;
     private static TextView mTV_pulse = null;
     private static WakeLock wakeLock = null;
@@ -104,7 +105,6 @@ public class HeartBeatActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_heart_beat);
-
         initConfig();
     }
 
@@ -169,6 +169,7 @@ public class HeartBeatActivity extends Activity {
         previewHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
 
         mTV_Heart_Rate = (TextView) findViewById(R.id.id_tv_heart_rate);
+        mTV_Heart_Test = (TextView) findViewById(R.id.id_tv_test);
         mTV_Avg_Pixel_Values = (TextView) findViewById(R.id.id_tv_Avg_Pixel_Values);
         mTV_pulse = (TextView) findViewById(R.id.id_tv_pulse);
 
@@ -245,7 +246,8 @@ public class HeartBeatActivity extends Activity {
             flag = 1;
             if(gx < 200){
                 if(hua[20] > 1){
-                    Toast.makeText(HeartBeatActivity.this, "请用您的指尖盖住摄像头镜头！", Toast.LENGTH_SHORT).show();
+                    mTV_Heart_Test.setText("请用您的指尖盖住摄像头镜头！");
+//                    Toast.makeText(HeartBeatActivity.this, "请用您的指尖盖住摄像头镜头！", Toast.LENGTH_SHORT).show();
                     hua[20] = 0;
                 }
                 hua[20]++;
@@ -359,7 +361,7 @@ public class HeartBeatActivity extends Activity {
                     averageArrayCnt++;
                 }
             }
-
+            Log.d("脉冲数组", averageArray.toString());
             //计算平均值
             int rollingAverage = (averageArrayCnt > 0)?(averageArrayAvg/averageArrayCnt):0;
             TYPE newType = currentType;
@@ -414,11 +416,16 @@ public class HeartBeatActivity extends Activity {
                     }
                 }
                 int beatsAvg = (beatsArrayAvg / beatsArrayCnt);
-                mTV_Heart_Rate.setText("您的心率是"+String.valueOf(beatsAvg) +
-                        "  值:" + String.valueOf(beatsArray.length) +
+
+
+                mTV_Heart_Rate.setText("心率："+String.valueOf(beatsAvg)+"/分");
+
+                mTV_Heart_Test.setText(String.valueOf(beatsAvg) +
+                        "  值" + String.valueOf(beatsArray.length) +
                         "    " + String.valueOf(beatsIndex) +
                         "    " + String.valueOf(beatsArrayAvg) +
                         "    " + String.valueOf(beatsArrayCnt));
+
                 //获取系统时间（ms）
                 startTime = System.currentTimeMillis();
                 beats = 0;

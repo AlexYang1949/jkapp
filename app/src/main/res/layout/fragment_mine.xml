@@ -7,34 +7,55 @@
     tools:context="com.jk.wyq.jkapp.MineModule.MineFragment">
 
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
+        android:orientation="horizontal"
+        android:minHeight="100dp"
+        android:paddingTop="20dp"
+        android:background="@color/color_main"
+        >
         <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:src="@mipmap/btn_bg_short"
-            android:layout_weight="1" />
-        <LinearLayout
+            android:id="@+id/icon"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="20dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:src="@mipmap/head"/>
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="王玉琪"
+            android:textSize="24dp"
+            android:textStyle="bold"
+            android:layout_toRightOf="@+id/icon"
+            android:layout_alignTop="@+id/icon"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="2dp"
+            android:textColor="@color/bg_white"/>
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="5">
-
-            <TextView
-                android:id="@+id/textView7"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="TextView" />
-        </LinearLayout>
-    </LinearLayout>
+            android:layout_alignBottom="@+id/icon"
+            android:layout_alignLeft="@+id/name"
+            android:text="积分：80"
+            android:textSize="18dp"
+            android:textColor="@color/bg_white"/>
+    </RelativeLayout>
 
     <ListView
         android:id="@+id/listView"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/color_main"
+        android:textColor="@color/bg_white"
+        android:text="退出登录"/>
 
 </LinearLayout>
