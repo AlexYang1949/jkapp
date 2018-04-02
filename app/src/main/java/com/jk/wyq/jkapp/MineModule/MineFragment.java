@@ -1,6 +1,7 @@
 package com.jk.wyq.jkapp.MineModule;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -11,7 +12,11 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.jk.wyq.jkapp.BaseModule.WebActivity;
+import com.jk.wyq.jkapp.HealthModule.HealthSelectActivity;
 import com.jk.wyq.jkapp.R;
+import com.jk.wyq.jkapp.StepModule.activity.StepActivity;
+import com.jk.wyq.jkapp.UserModule.PunchActivity;
 
 import java.util.List;
 
@@ -37,7 +42,20 @@ public class MineFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position,
                                     long id) {
-                Toast.makeText(getContext(),"您选择了" + mListStr[position], Toast.LENGTH_LONG).show();
+                if (position==3){
+                    Intent intent=new Intent(getActivity(), WebActivity.class);
+                    intent.putExtra("url", "http://www.39.net");
+                    startActivity(intent);
+                }else if(position==2){
+                    Intent intent=new Intent(getActivity(), StepActivity.class);
+                    startActivity(intent);
+                }else if (position==0){
+                    Intent intent=new Intent(getActivity(), PunchActivity.class);
+                    startActivity(intent);
+                }else if (position==1){
+                    Intent intent=new Intent(getActivity(), HealthSelectActivity.class);
+                    startActivity(intent);
+                }
             }
         });
         return view;

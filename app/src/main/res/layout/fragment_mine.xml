@@ -13,8 +13,8 @@
         android:orientation="horizontal"
         android:minHeight="100dp"
         android:paddingTop="20dp"
-        android:background="@color/color_main"
-        >
+        android:background="@color/color_main">
+
         <ImageView
             android:id="@+id/icon"
             android:layout_width="60dp"
@@ -22,13 +22,14 @@
             android:layout_marginLeft="20dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
+            android:background="@drawable/icon_shape"
             android:src="@mipmap/head"/>
 
         <TextView
             android:id="@+id/name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="王玉琪"
+            android:text="王玉琦"
             android:textSize="24dp"
             android:textStyle="bold"
             android:layout_toRightOf="@+id/icon"

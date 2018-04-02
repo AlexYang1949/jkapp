@@ -5,6 +5,12 @@
     android:background="@color/bg_gray"
     tools:context=".BaseModule.MainActivity">
 
+    <FrameLayout
+        android:id="@+id/ly_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/rg_tab_bar"></FrameLayout>
+
     <RadioGroup
         android:id="@+id/rg_tab_bar"
         android:layout_width="match_parent"
@@ -12,7 +18,6 @@
         android:layout_alignParentBottom="true"
         android:background="@color/bg_white"
         android:orientation="horizontal">
-
 
         <RadioButton
             android:id="@+id/rb_home"
@@ -31,15 +36,5 @@
             style="@style/tab_menu_item"
             android:drawableTop="@drawable/tab_menu_mine"
             android:text="我的"/>
-
     </RadioGroup>
-
-
-    <FrameLayout
-        android:id="@+id/ly_content"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@id/rg_tab_bar"></FrameLayout>
-
-
 </RelativeLayout>

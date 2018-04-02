@@ -28,6 +28,7 @@ import org.achartengine.model.XYSeries;
 import org.achartengine.renderer.XYMultipleSeriesRenderer;
 import org.achartengine.renderer.XYSeriesRenderer;
 
+import java.sql.Time;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -343,7 +344,7 @@ public class HeartBeatActivity extends Activity {
             int width = size.width;
             int height = size.height;
 
-            //图像处理
+            //图像处理 计算出平均像素值
             int imgAvg = ImageProcessing.decodeYUV420SPtoRedAvg(data.clone(),height,width);
             gx = imgAvg;
             mTV_Avg_Pixel_Values.setText("平均像素值是" + String.valueOf(imgAvg));
@@ -361,7 +362,7 @@ public class HeartBeatActivity extends Activity {
                     averageArrayCnt++;
                 }
             }
-            Log.d("脉冲数组", averageArray.toString());
+//            Log.d("脉冲数组", averageArray.toString());
             //计算平均值
             int rollingAverage = (averageArrayCnt > 0)?(averageArrayAvg/averageArrayCnt):0;
             TYPE newType = currentType;
@@ -370,7 +371,8 @@ public class HeartBeatActivity extends Activity {
                 if (newType != currentType) {
                     beats++;
                     flag=0;
-                    mTV_pulse.setText("脉冲数是" + String.valueOf(beats));
+//                    mTV_pulse.setText("脉冲数是" + String.valueOf(beats));
+//                    Log.d("脉冲数",String.valueOf(System.currentTimeMillis()));
                 }
             } else if (imgAvg > rollingAverage) {
                 newType = TYPE.GREEN;
@@ -418,13 +420,13 @@ public class HeartBeatActivity extends Activity {
                 int beatsAvg = (beatsArrayAvg / beatsArrayCnt);
 
 
-                mTV_Heart_Rate.setText("心率："+String.valueOf(beatsAvg)+"/分");
+                mTV_Heart_Rate.setText("心率："+String.valueOf(beatsAvg)+"次/分");
 
-                mTV_Heart_Test.setText(String.valueOf(beatsAvg) +
-                        "  值" + String.valueOf(beatsArray.length) +
-                        "    " + String.valueOf(beatsIndex) +
-                        "    " + String.valueOf(beatsArrayAvg) +
-                        "    " + String.valueOf(beatsArrayCnt));
+//                mTV_Heart_Test.setText(String.valueOf(beatsAvg) +
+//                        "  值" + String.valueOf(beatsArray.length) +
+//                        "    " + String.valueOf(beatsIndex) +
+//                        "    " + String.valueOf(beatsArrayAvg) +
+//                        "    " + String.valueOf(beatsArrayCnt));
 
                 //获取系统时间（ms）
                 startTime = System.currentTimeMillis();

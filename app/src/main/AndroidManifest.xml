@@ -25,7 +25,7 @@
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
 
-    <!--web-->
+    <!-- web -->
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -35,28 +35,32 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".BaseModule.MainActivity"
+        <activity
+            android:name=".BaseModule.MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".StepModule.activity.StepActivity"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".StepModule.activity.StepActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".StepModule.activity.SetPlanActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".StepModule.activity.HistoryActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
 
         <service
             android:name=".StepModule.step.service.StepService"
             android:priority="1000">
             <intent-filter>
+
                 <!-- 系统启动完成后会调用 -->
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.intent.action.DATE_CHANGED" />
@@ -72,6 +76,7 @@
             android:priority="1000"
             android:process="cn.bluemobi.dylan.step..pedometer.StepsDetectService">
             <intent-filter>
+
                 <!-- 系统启动完成后会调用 -->
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.intent.action.DATE_CHANGED" />
@@ -83,20 +88,28 @@
             </intent-filter>
         </service>
 
-        <activity android:name=".HeartBeatModule.HeartBeatActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".HealthModule.HealthSelectActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".HealthModule.BaseHealthActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".HealthModule.AdvanceHealthActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".HealthModule.HealthResultActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".UserModule.LoginActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".BaseModule.WebActivity"
-            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".HeartBeatModule.HeartBeatActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".HealthModule.HealthSelectActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".HealthModule.BaseHealthActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".HealthModule.AdvanceHealthActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".HealthModule.HealthResultActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".UserModule.LoginActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".BaseModule.WebActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".UserModule.PunchActivity"></activity>
     </application>
 
 </manifest>
