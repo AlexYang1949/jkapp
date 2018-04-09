@@ -122,7 +122,7 @@ public class HomeFragment extends Fragment {
                 }else if(dataList.get(position).type==HomeAdapter.TYPE_STEP){
                     gotoStepAct();
                 }
-                Toast.makeText(getContext(),"您选择了" + dataList.get(position), Toast.LENGTH_LONG).show();
+//                Toast.makeText(getContext(),"您选择了" + dataList.get(position), Toast.LENGTH_LONG).show();
             }
         });
     }

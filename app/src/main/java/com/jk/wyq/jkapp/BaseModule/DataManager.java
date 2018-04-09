@@ -57,7 +57,6 @@ public class DataManager {
             user.setPoint("0");
             DbUtils.insert(user);
         }
-
     }
 
     public static StepBean currentStep(Context context){
@@ -98,9 +97,7 @@ public class DataManager {
     public static HealthBean healthBean(Context context){
         String name = DataManager.currentUserName(context);
         List<HealthBean> list = DbUtils.getQueryByWhere(HealthBean.class,"name",new String[]{name});
-
         if (list.size() == 1) {
-            Log.i("健康", "1");
             return list.get(0);
         } else {
             HealthBean health = new HealthBean();
@@ -119,6 +116,9 @@ public class DataManager {
             DbUtils.insert(health);
         }
     }
+
+
+
 
     public static boolean isLogin(Context context){
         boolean login = DataManager.currentUserName(context) != "";
