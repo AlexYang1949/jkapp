@@ -36,6 +36,7 @@ public class HomeFragment extends Fragment {
     private Button hbBtn;
     private Button stepBtn;
     private Button jkBtn;
+    public Button loginBtn;
     private ArrayList<HomeBean> dataList;
 
     private ListView listView;
@@ -72,19 +73,39 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        loginBtn = (Button)view.findViewById(R.id.loginBtn);
+        loginBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                login();
+            }
+        });
         listView = (ListView)view.findViewById(R.id.listView);
-        initData();
         return view;
     }
 
-    private  void initData(){
-        dataList = new ArrayList<>();
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+    }
 
-        HomeBean home1 = new HomeBean(1,1000);
-        HomeBean home2 = new HomeBean(2,1000);
-        HomeBean home3 = new HomeBean(3,1000);
-        HomeBean home4 = new HomeBean(4,"睡觉","22:00");
-        HomeBean home5 = new HomeBean(4,"喝水","19:00");
+    @Override
+    public void onStart() {
+
+        super.onStart();
+    }
+
+    public void initData(){
+        dataList = new ArrayList<>();
+        HomeBean home1 = new HomeBean(HomeAdapter.TYPE_STEP);
+        home1.step = DataManager.currentStep(getContext()).step;
+        HomeBean home2 = new HomeBean(HomeAdapter.TYPE_HEALTH);
+        home2.bmi = DataManager.healthBean(getContext()).bmi;
+        home2.date = DataManager.healthBean(getContext()).date;
+        HomeBean home3 = new HomeBean(HomeAdapter.TYPE_WEATHER);
+
+        HomeBean home4 = new HomeBean(HomeAdapter.TYPE_TIME,"睡觉","22:00");
+        HomeBean home5 = new HomeBean(HomeAdapter.TYPE_TIME,"喝水","19:00");
         dataList.add(home1);
         dataList.add(home2);
         dataList.add(home3);
@@ -96,6 +117,11 @@ public class HomeFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position,
                                     long id) {
+                if(dataList.get(position).type==HomeAdapter.TYPE_HEALTH){
+                    gotoJKTest();
+                }else if(dataList.get(position).type==HomeAdapter.TYPE_STEP){
+                    gotoStepAct();
+                }
                 Toast.makeText(getContext(),"您选择了" + dataList.get(position), Toast.LENGTH_LONG).show();
             }
         });
@@ -109,13 +135,20 @@ public class HomeFragment extends Fragment {
 
     // 跳转记步activity
     private  void gotoStepAct(){
+        if(!DataManager.isLogin(getActivity())) return;
         Intent intent = new Intent(getActivity(), StepActivity.class);
         startActivity(intent);
     }
     // 跳转健康测试activity
     private  void gotoJKTest(){
+        if(!DataManager.isLogin(getActivity())) return;
         Intent intent = new Intent(getActivity(), HealthSelectActivity.class);
         startActivity(intent);
     }
+
+    public void login(){
+        DataManager.isLogin(getActivity());
+    }
+
 
 }

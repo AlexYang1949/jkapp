@@ -11,7 +11,7 @@ import com.jk.wyq.jkapp.R;
 
 public class AdvanceHealthActivity extends AppCompatActivity {
 
-    Button startBtn ;
+    Button startBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -24,25 +24,22 @@ public class StepCount implements StepCountListener {
         return stepDetector;
     }
 
-    /*
-        * 连续走十步才会开始计步
-        * 连续走了9步以下,停留超过3秒,则计数清空
-        * */
+
     @Override
     public void countStep() {
         this.timeOfLastPeak = this.timeOfThisPeak;
         this.timeOfThisPeak = System.currentTimeMillis();
         if (this.timeOfThisPeak - this.timeOfLastPeak <= 3000L) {
-            if (this.count < 9) {
-                this.count++;
-            } else if (this.count == 9) {
+//            if (this.count < 9) {
+//                this.count++;
+//            } else if (this.count == 9) {
                 this.count++;
                 this.mCount += this.count;
                 notifyListener();
-            } else {
-                this.mCount++;
-                notifyListener();
-            }
+//            } else {
+//                this.mCount++;
+//                notifyListener();
+//            }
         } else {//超时
             this.count = 1;//为1,不是0
         }

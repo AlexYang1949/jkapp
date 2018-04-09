@@ -5,39 +5,25 @@ package com.jk.wyq.jkapp.BaseModule;
  */
 
 public class HomeBean {
-    private int type;
+    public int type;
 
-    private int step;
+    public String step;
 
-    private String tip;
+    public String tip;
 
-    private String time;
+    public String time;
 
-    public HomeBean(int type,int step){
+    public String bmi;
+
+    public String date;
+
+    public HomeBean(int type){
         this.type = type;
-        this.step = step;
     }
 
     public HomeBean(int type,String tip,String time){
         this.type = type;
         this.tip = tip;
         this.time = time;
-    }
-
-
-    public int getType() {
-        return type;
-    }
-
-    public int getStep() {
-        return step;
-    }
-
-    public String getTime() {
-        return time;
-    }
-
-    public String getTip() {
-        return tip;
     }
 }

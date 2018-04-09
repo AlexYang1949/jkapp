@@ -1,11 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    android:paddingTop="15dp"
     tools:context="com.jk.wyq.jkapp.HealthModule.AdvanceHealthActivity">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/color_main"
+        android:textSize="20dp"
+        android:layout_marginBottom="10dp"
+        android:text="进阶测试" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="高血压" />
+
+    <EditText
+        android:id="@+id/height"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="cm"
+        android:inputType="number"/>
     <Button
         android:id="@+id/startBtn"
         android:layout_width="wrap_content"
@@ -13,4 +37,4 @@
         android:text="开始测试"
         tools:layout_editor_absoluteX="122dp"
         tools:layout_editor_absoluteY="74dp" />
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>

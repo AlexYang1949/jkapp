@@ -11,6 +11,7 @@ import com.jk.wyq.jkapp.MineModule.MineFragment;
 import com.jk.wyq.jkapp.R;
 import com.jk.wyq.jkapp.TipsModule.TipsFragment;
 
+import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
@@ -33,6 +34,18 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
         //获取第一个单选按钮，并设置其为选中状态
         rb_channel = (RadioButton) findViewById(R.id.rb_home);
         rb_channel.setChecked(true);
+        DbUtils.createDb(this);
+    }
+
+    @Override
+    protected void onResume() {
+        if (DataManager.isLogin(this)){
+            homeFragment.initData();
+            homeFragment.loginBtn.setVisibility(View.INVISIBLE);
+        }else {
+            homeFragment.loginBtn.setVisibility(View.VISIBLE);
+        }
+        super.onResume();
     }
 
     @Override

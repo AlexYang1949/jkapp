@@ -23,11 +23,11 @@ public class HomeAdapter extends BaseAdapter {
     private LayoutInflater inflater;
 
 
-    public final int TYPE_STEP = 1; // 步数
-    public final int TYPE_WEATHER = 2; // 天气
-    public final int TYPE_HEALTH = 3; // 健康
-    public final int TYPE_TIME = 4; // 定时
-    private final int TYPE_COUNT = 4; // 总个数
+    public static int TYPE_STEP = 1; // 步数
+    public static int TYPE_WEATHER = 2; // 天气
+    public static int TYPE_HEALTH = 3; // 健康
+    public static int TYPE_TIME = 4; // 定时
+    private final int TYPE_COUNT = 2; // 总个数
 
     public HomeAdapter(Context context,List dataList){
         this.context = context;
@@ -52,22 +52,30 @@ public class HomeAdapter extends BaseAdapter {
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         HomeBean bean = dataList.get(i);
-        int type = bean.getType();
+        int type = bean.type;
 
         if (type==TYPE_WEATHER){
             view = inflater.inflate(R.layout.item_home_weather, null);
         }else if (type==TYPE_STEP){
             view = inflater.inflate(R.layout.item_home_step, null);
             TextView finish = (TextView) view.findViewById(R.id.finish);
-            finish.setText(bean.getStep()==0?"0":String.valueOf(bean.getStep()));
+            finish.setText(bean.step);
         }else if(type==TYPE_TIME){
             view = inflater.inflate(R.layout.item_home_time, null);
             TextView txt_tip = (TextView) view.findViewById(R.id.txt_tip);
-            txt_tip.setText(bean.getTip());
+            txt_tip.setText(bean.tip);
             TextView txt_time = (TextView) view.findViewById(R.id.txt_time);
-            txt_time.setText(bean.getTime());
+            txt_time.setText(bean.time);
         }else if(type==TYPE_HEALTH) {
             view = inflater.inflate(R.layout.item_home_health, null);
+            TextView txt_health = (TextView) view.findViewById(R.id.txt_health);
+            TextView txt_date = (TextView) view.findViewById(R.id.txt_date);
+            if (bean.bmi == null){
+                txt_health.setText("点击进行基础健康测试");
+            }else {
+                txt_health.setText("BMI值为:"+bean.bmi);
+                txt_date.setText(bean.date);
+            }
         }
         return view;
     }

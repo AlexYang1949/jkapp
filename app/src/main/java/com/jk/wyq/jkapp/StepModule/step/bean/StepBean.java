@@ -10,46 +10,25 @@ import com.litesuits.orm.db.enums.AssignType;
  */
 
 @Table("step")
-public class StepData {
+public class StepBean{
 
     // 指定自增，每个对象需要有一个主键
     @PrimaryKey(AssignType.AUTO_INCREMENT)
-    private int id;
+    public int id;
 
-    @Column("today")
-    private String today;
+    @Column("name")
+    public String name;
+    @Column("date")
+    public String date;
     @Column("step")
-    private String step;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getToday() {
-        return today;
-    }
-
-    public void setToday(String today) {
-        this.today = today;
-    }
-
-    public String getStep() {
-        return step;
-    }
-
-    public void setStep(String step) {
-        this.step = step;
-    }
+    public String step;
 
     @Override
     public String toString() {
         return "StepData{" +
                 "id=" + id +
-                ", today='" + today + '\'' +
+                "name="+name+
+                ", date='" + date + '\'' +
                 ", step='" + step + '\'' +
                 '}';
     }

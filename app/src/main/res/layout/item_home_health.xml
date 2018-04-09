@@ -23,18 +23,18 @@
         android:layout_height="match_parent"
         android:paddingLeft="10dp">
         <TextView
-            android:id="@+id/textView1"
+            android:id="@+id/txt_health"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="BMI值为22"
+            android:text=""
             android:textSize="26dp"
 
             android:textColor="@color/red"/>
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/txt_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/textView1"
-            android:text="测试时间: 2018-02-10 12:12:09" />
+            android:layout_below="@+id/txt_health"
+            android:text="" />
     </RelativeLayout>
 </LinearLayout>

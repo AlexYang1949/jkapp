@@ -17,8 +17,6 @@ public class SharedPreferencesUtils {
 	 */
 	private String filename ;
 
-
-
 	public SharedPreferencesUtils(Context context,String filename) {
 		this.context=context;
 		this.filename = filename;

@@ -64,6 +64,10 @@ public class DbUtils {
         return liteOrm.<T>query(new QueryBuilder(cla).where(field + "=?", value));
     }
 
+    public static <T> List<T> getQueryByWhere2(Class<T> cla, String field1, String field2, String[] value) {
+        return liteOrm.<T>query(new QueryBuilder(cla).where(field1 + "=? and "+ field2 +"=?", value));
+    }
+
     /**
      * 查询  某字段 等于 Value的值  可以指定从1-20，就是分页
      *

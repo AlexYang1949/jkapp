@@ -25,12 +25,14 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import com.jk.wyq.jkapp.BaseModule.DataManager;
+import com.jk.wyq.jkapp.BaseModule.SharedPreferencesUtils;
 import com.jk.wyq.jkapp.R;
 import com.jk.wyq.jkapp.StepModule.activity.StepActivity;
 import com.jk.wyq.jkapp.StepModule.step.UpdateUiCallBack;
 import com.jk.wyq.jkapp.StepModule.step.accelerometer.StepCount;
 import com.jk.wyq.jkapp.StepModule.step.accelerometer.StepValuePassListener;
-import com.jk.wyq.jkapp.StepModule.step.bean.StepData;
+import com.jk.wyq.jkapp.StepModule.step.bean.StepBean;
 import com.jk.wyq.jkapp.BaseModule.DbUtils;
 
 public class StepService extends Service implements SensorEventListener {
@@ -92,6 +94,8 @@ public class StepService extends Service implements SensorEventListener {
      */
     private NotificationCompat.Builder mBuilder;
 
+    private SharedPreferencesUtils sp;
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -142,19 +146,8 @@ public class StepService extends Service implements SensorEventListener {
      * 初始化当天的步数
      */
     private void initTodayData() {
-        CURRENT_DATE = getTodayDate();
-        DbUtils.createDb(this);
-
-        //获取当天的数据，用于展示
-        List<StepData> list = DbUtils.getQueryByWhere(StepData.class, "today", new String[]{CURRENT_DATE});
-        if (list.size() == 0 || list.isEmpty()) {
-            CURRENT_STEP = 0;
-        } else if (list.size() == 1) {
-            Log.v(TAG, "StepData=" + list.get(0).toString());
-            CURRENT_STEP = Integer.parseInt(list.get(0).getStep());
-        } else {
-            Log.v(TAG, "出错了！");
-        }
+        StepBean step = DataManager.currentStep(this);
+        CURRENT_STEP = step!=null?Integer.parseInt(step.step):0;
         if (mStepCount != null) {
             mStepCount.setSteps(CURRENT_STEP);
         }
@@ -532,19 +525,7 @@ public class StepService extends Service implements SensorEventListener {
      */
     private void save() {
         int tempStep = CURRENT_STEP;
-
-        List<StepData> list = DbUtils.getQueryByWhere(StepData.class, "today", new String[]{CURRENT_DATE});
-        if (list.size() == 0 || list.isEmpty()) {
-            StepData data = new StepData();
-            data.setToday(CURRENT_DATE);
-            data.setStep(tempStep + "");
-            DbUtils.insert(data);
-        } else if (list.size() == 1) {
-            StepData data = list.get(0);
-            data.setStep(tempStep + "");
-            DbUtils.update(data);
-        } else {
-        }
+        DataManager.setCurrentStep(this,tempStep);
     }
 
 

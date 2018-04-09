@@ -18,7 +18,7 @@ import java.util.List;
 import com.jk.wyq.jkapp.R;
 import com.jk.wyq.jkapp.StepModule.adapter.CommonAdapter;
 import com.jk.wyq.jkapp.StepModule.adapter.CommonViewHolder;
-import com.jk.wyq.jkapp.StepModule.step.bean.StepData;
+import com.jk.wyq.jkapp.StepModule.step.bean.StepBean;
 import com.jk.wyq.jkapp.BaseModule.DbUtils;
 
 /**
@@ -56,14 +56,14 @@ public class HistoryActivity extends AppCompatActivity {
         setEmptyView(lv);
         DbUtils.createDb(this);
 
-        List<StepData> stepDatas = DbUtils.getQueryAll(StepData.class);
-        lv.setAdapter(new CommonAdapter<StepData>(this,stepDatas,R.layout.item_history_step) {
+        List<StepBean> stepDatas = DbUtils.getQueryAll(StepBean.class);
+        lv.setAdapter(new CommonAdapter<StepBean>(this,stepDatas,R.layout.item_history_step) {
             @Override
-            protected void convertView(View item, StepData stepData) {
+            protected void convertView(View item, StepBean stepData) {
                 TextView tv_date= CommonViewHolder.get(item,R.id.tv_date);
                 TextView tv_step= CommonViewHolder.get(item,R.id.tv_step);
-                tv_date.setText(stepData.getToday());
-                tv_step.setText(stepData.getStep()+"步");
+                tv_date.setText(stepData.date);
+                tv_step.setText(stepData.step+"步");
             }
         });
     }
