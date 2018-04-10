@@ -49,7 +49,8 @@ public class DataManager {
     }
 
     public static void saveCurrentUser(Context context,UserBean user){
-        List<UserBean> list = DbUtils.getQueryByWhere(UserBean.class,"name",new String[]{user.name});
+        String name = DataManager.currentUserName(context);
+        List<UserBean> list = DbUtils.getQueryByWhere(UserBean.class,"name",new String[]{name});
         Log.i("list", list.toString());
         if (list.size() == 1) {
             DbUtils.update(user);

@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.jk.wyq.jkapp.BaseModule.DataManager;
 import com.jk.wyq.jkapp.BaseModule.SharedPreferencesUtils;
 import com.jk.wyq.jkapp.BaseModule.WebActivity;
+import com.jk.wyq.jkapp.HealthModule.HealthResultActivity;
 import com.jk.wyq.jkapp.HealthModule.HealthSelectActivity;
 import com.jk.wyq.jkapp.R;
 import com.jk.wyq.jkapp.StepModule.activity.StepActivity;
@@ -70,14 +71,16 @@ public class MineFragment extends Fragment {
                     Intent intent=new Intent(getActivity(), WebActivity.class);
                     intent.putExtra("url", "http://www.39.net");
                     startActivity(intent);
+                    // 测步数
                 }else if(position==2){
                     Intent intent=new Intent(getActivity(), StepActivity.class);
                     startActivity(intent);
                 }else if (position==0){
                     Intent intent=new Intent(getActivity(), PunchActivity.class);
                     startActivity(intent);
+                    // 健康报表
                 }else if (position==1){
-                    Intent intent=new Intent(getActivity(), HealthSelectActivity.class);
+                    Intent intent=new Intent(getActivity(), HealthResultActivity.class);
                     startActivity(intent);
                     // 退出登录
                 }else if (position==4){

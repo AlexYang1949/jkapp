@@ -27,7 +27,7 @@ public class HealthBean {
     @Column("weight")
     public String weight;
 
-    // 体重
+    // 身高
     @Column("height")
     public String height;
 

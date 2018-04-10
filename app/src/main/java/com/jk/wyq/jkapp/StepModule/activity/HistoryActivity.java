@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import com.jk.wyq.jkapp.BaseModule.DataManager;
 import com.jk.wyq.jkapp.R;
 import com.jk.wyq.jkapp.StepModule.adapter.CommonAdapter;
 import com.jk.wyq.jkapp.StepModule.adapter.CommonViewHolder;
@@ -55,8 +56,8 @@ public class HistoryActivity extends AppCompatActivity {
     private void initData() {
         setEmptyView(lv);
         DbUtils.createDb(this);
-
-        List<StepBean> stepDatas = DbUtils.getQueryAll(StepBean.class);
+        String name = DataManager.currentUserName(this);
+        List<StepBean> stepDatas = DbUtils.getQueryByWhere(StepBean.class,"name",new String[]{name});
         lv.setAdapter(new CommonAdapter<StepBean>(this,stepDatas,R.layout.item_history_step) {
             @Override
             protected void convertView(View item, StepBean stepData) {
