@@ -92,26 +92,5 @@ public class PunchActivity extends AppCompatActivity implements DatePickerView.O
     @Override
     public void signIn() {
         //动态更新的时候必须  清除cache
-//        dpcManager.clearnDATE_CACHE(); //清除cache
-//        //重新设置日期
-//        List<String> tmp = new ArrayList<>();
-//        tmp.add("2016-2-20");
-//        tmp.add("2016-2-21");
-//        tmp.add("2016-2-22");
-//        tmp.add("2016-2-25");
-//        dpcManager.setDecorBG(tmp);
-//
-//        myDatepicker.setDate(2016, 2);
-//        myDatepicker.setLeftTitle("2月");
-//        myDatepicker.setRightTitle(true);
-//
-//        myDatepicker.setDPDecor(new com.jk.wyq.jkapp.UserModule.DatePicker.DPDecor() {
-//            @Override
-//            public void drawDecorBG(Canvas canvas, Rect rect, Paint paint) {
-//                paint.setColor(getResources().getColor(R.color.color_main));
-//                canvas.drawCircle(rect.centerX(), rect.centerY(), rect.width() / 4F, paint);
-//            }
-//        });
-//        myDatepicker.invalidate(); //刷新
     }
 }

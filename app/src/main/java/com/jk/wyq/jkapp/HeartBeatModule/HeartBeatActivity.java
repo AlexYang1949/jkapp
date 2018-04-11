@@ -1,7 +1,9 @@
 package com.jk.wyq.jkapp.HeartBeatModule;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.Paint.Align;
@@ -12,6 +14,8 @@ import android.os.Handler;
 import android.os.Message;
 import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -113,7 +117,6 @@ public class HeartBeatActivity extends Activity {
         setContentView(R.layout.activity_heart_beat);
         initConfig();
     }
-
 
     /**
      * 初始化配置

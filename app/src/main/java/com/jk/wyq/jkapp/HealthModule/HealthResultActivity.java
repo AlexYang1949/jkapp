@@ -1,6 +1,10 @@
 package com.jk.wyq.jkapp.HealthModule;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -84,6 +88,20 @@ public class HealthResultActivity extends AppCompatActivity {
     }
 
     private void gotoHeartBeat(){
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.CAMERA)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            // Should we show an explanation?
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    Manifest.permission.CAMERA)) {
+            } else {
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.CAMERA},
+                        2);
+            }
+            return;
+        }
         Intent intent = new Intent(this, HeartBeatActivity.class);
         startActivity(intent);
     }
