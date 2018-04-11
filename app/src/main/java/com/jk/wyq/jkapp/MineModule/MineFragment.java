@@ -35,7 +35,7 @@ public class MineFragment extends Fragment {
     ListView listView;
     public TextView txt_name;
     public TextView txt_point;
-    private String[] mListStr = {"打卡记录","测试报告","今日运动","健康商城","退出登录"};
+    private String[] mListStr = {"打卡记录","健康报告","今日运动","健康商城","退出登录"};
     public MineFragment() {
         // Required empty public constructor
     }
