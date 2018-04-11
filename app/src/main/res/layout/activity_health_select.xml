@@ -24,21 +24,23 @@
         android:textColor="@color/bg_white"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
         android:text="基础测试" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/color_main"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="30dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:text="     进阶测试：BMI指数（即身体质量指数，简称体质指数又称体重，英文为Body Mass Index，简称BMI），"
+        android:text="     进阶测试：包括常用的生理指标，包括血压、血糖等常见指标。"
         />
     <Button
         android:id="@+id/advanceBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:onClick="gotoAdvance"
         android:background="@color/color_main"
         android:textColor="@color/bg_white"
