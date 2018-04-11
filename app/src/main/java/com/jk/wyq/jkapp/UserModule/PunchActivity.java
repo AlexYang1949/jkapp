@@ -35,9 +35,10 @@ public class PunchActivity extends AppCompatActivity implements DatePickerView.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_punch);
         myDatepicker = findViewById(R.id.datepicker);
+
         UserBean user = DataManager.currentUser(this);
-        int point = Integer.parseInt(user.getPoint())+10;
-        user.setPoint(point+"");
+        int point = Integer.parseInt(user.point)+10;
+        user.point = point+"";
         DataManager.saveCurrentUser(this,user);
     }
 

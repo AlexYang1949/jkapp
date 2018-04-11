@@ -43,21 +43,30 @@ public class DataManager {
             return list.get(0);
         } else {
             UserBean user = new UserBean();
-            user.setName(name);
-            user.setPoint("0");
+            user.name = name;
+            user.point = "0";
             return user;
         }
     }
 
-
     public static void saveCurrentUser(Context context,UserBean user){
         String name = DataManager.currentUserName(context);
         List<UserBean> list = DbUtils.getQueryByWhere(UserBean.class,"name",new String[]{name});
-        Log.i("list", list.toString());
         if (list.size() == 1) {
             DbUtils.update(user);
         } else {
-            user.setPoint("0");
+            user.point = "0";
+            DbUtils.insert(user);
+        }
+    }
+
+    public static void saveUser(Context context,UserBean user){
+        String name = user.name;
+        List<UserBean> list = DbUtils.getQueryByWhere(UserBean.class,"name",new String[]{name});
+        if (list.size() == 1) {
+            DbUtils.update(user);
+        } else {
+            user.point = "0";
             DbUtils.insert(user);
         }
     }

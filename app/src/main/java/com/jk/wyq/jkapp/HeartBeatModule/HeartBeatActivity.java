@@ -511,8 +511,8 @@ public class HeartBeatActivity extends Activity {
 
             Toast.makeText(this,"测试完成！奖励10积分！",Toast.LENGTH_LONG).show();
             UserBean user = DataManager.currentUser(this);
-            int point = Integer.parseInt(user.getPoint())+10;
-            user.setPoint(point+"");
+            int point = Integer.parseInt(user.point)+10;
+            user.point = point+"";
             DataManager.saveCurrentUser(this,user);
         }
     }

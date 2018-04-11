@@ -36,9 +36,9 @@ public class RegisterActivity extends AppCompatActivity {
         String name = accountTxt.getText().toString();
         String pwd = pwdTxt.getText().toString();
         UserBean user = new UserBean();
-        user.setName(name);
-        user.setPassword(name);
-        DataManager.saveCurrentUser(this,user);
+        user.name = name;
+        user.password = pwd;
+        DataManager.saveUser(this,user);
         Toast.makeText(this,"注册成功",Toast.LENGTH_LONG).show();
         finish();
     }
