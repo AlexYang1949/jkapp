@@ -40,7 +40,7 @@ public class AddTimeActivity extends Activity {
             return;
         }
         TimeBean time = new TimeBean();
-        time.name  = txt_name.getText().toString();
+        time.tip  = txt_name.getText().toString();
         time.time = txt_time.getText().toString();
         DataManager.saveTimeBean(this,time);
 

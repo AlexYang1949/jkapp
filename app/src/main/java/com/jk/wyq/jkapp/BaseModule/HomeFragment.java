@@ -112,8 +112,8 @@ public class HomeFragment extends Fragment {
             HomeBean home = new HomeBean(HomeAdapter.TYPE_TIME,"点击添加提示","");
             dataList.add(home);
         }else {
-            for(TimeBean bean:timeList){
-                HomeBean home = new HomeBean(HomeAdapter.TYPE_TIME,bean.name,bean.time);
+            for(TimeBean time:timeList){
+                HomeBean home = new HomeBean(HomeAdapter.TYPE_TIME,time.tip,time.time);
                 dataList.add(home);
             }
         }
