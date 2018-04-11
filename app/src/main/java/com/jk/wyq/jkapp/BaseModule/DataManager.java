@@ -225,6 +225,13 @@ public class DataManager {
     // 当前日期
     public static String currentDate(){
         Date date = new Date(System.currentTimeMillis());
+        String dateStr = new SimpleDateFormat("yyyy-M-d").format(date);
+        return dateStr;
+    }
+
+    // 当前时间
+    public static String currentTime(){
+        Date date = new Date(System.currentTimeMillis());
         return new SimpleDateFormat("yyyy-MM-dd HH:mm").format(date);
     }
 }

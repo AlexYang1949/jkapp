@@ -6,6 +6,7 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.DatePicker;
 
@@ -18,6 +19,8 @@ import com.jk.wyq.jkapp.UserModule.DatePicker.*;
 import com.jk.wyq.jkapp.UserModule.UserBean;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class PunchActivity extends AppCompatActivity implements DatePickerView.OnClickSignIn{
@@ -50,15 +53,17 @@ public class PunchActivity extends AppCompatActivity implements DatePickerView.O
 
         //自定义背景绘制示例
         List<String> tmp = new ArrayList<>();
-        tmp.add("2016-2-3"); //yyyy-M-d
-        tmp.add("2016-2-1");
-        tmp.add("2016-2-9");
-        tmp.add("2016-2-10");
-        tmp.add("2016-2-11");
-        tmp.add("2016-2-12");
+        tmp.add(DataManager.currentDate());
+        Log.i("init: ", DataManager.currentDate());
         dpcManager.setDecorBG(tmp); //预先设置日期背景 一定要在在开始设置
 
-        myDatepicker.setDate(2016, 2); //设置日期
+        Date date = new Date(System.currentTimeMillis());
+        Calendar calendar=Calendar.getInstance();
+        calendar.setTime(date);
+        int year=calendar.get(Calendar.YEAR);
+        int month=calendar.get(Calendar.MONTH)+1;
+
+        myDatepicker.setDate(year, month); //设置日期
 
         myDatepicker.setMode(com.jk.wyq.jkapp.UserModule.DatePicker.DPMode.NONE); //设置选择模式
 
@@ -69,7 +74,7 @@ public class PunchActivity extends AppCompatActivity implements DatePickerView.O
         myDatepicker.setIsScroll(false); //是否允许滑动 false表示左右上下都不能滑动  单项设置上下or左右 你需要自己扩展
         myDatepicker.setIsSelChangeColor(true, getResources().getColor(R.color.bg_white)); //设置选择的日期字体颜色,不然有的背景颜色和默认的字体颜色不搭
 
-        myDatepicker.setLeftTitle(2 + "月"); //左上方text
+        myDatepicker.setLeftTitle(month + "月"); //左上方text
         myDatepicker.setRightTitle(true); //是否签到
         myDatepicker.setOnClickSignIn(this); //点击签到事件
 
