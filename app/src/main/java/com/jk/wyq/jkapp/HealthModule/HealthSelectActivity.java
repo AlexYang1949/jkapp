@@ -20,7 +20,7 @@ public class HealthSelectActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void gotoAdvance(View view){
+    public void gotoAdvance(View view){
         Intent intent = new Intent(this, AdvanceHealthActivity.class);
         startActivity(intent);
     }

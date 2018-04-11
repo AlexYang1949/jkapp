@@ -5,56 +5,46 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingLeft="20dp"
-    android:paddingRight="20dp"
-    android:paddingTop="15dp"
-    tools:context="com.jk.wyq.jkapp.HealthModule.AdvanceHealthActivity">
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    tools:context="com.jk.wyq.jkapp.HealthModule.AddTimeActivity">
 
     <TextView
+        android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/color_main"
         android:textSize="20dp"
         android:layout_marginBottom="10dp"
-        android:text="进阶测试" />
+        android:text="添加健康提示" />
 
     <TextView
+        android:id="@+id/textView11"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="低血压" />
+        android:text="提示名称" />
 
     <EditText
-        android:id="@+id/low_press"
+        android:id="@+id/name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="mmHg"
-        android:inputType="number"/>
+        android:hint="例如：喝水"/>
+
     <TextView
+        android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="高血压" />
+        android:text="时间" />
 
     <EditText
-        android:id="@+id/high_press"
+        android:id="@+id/time"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="mmHg"
-        android:inputType="number"/>
+        android:hint="输入格式： 00:00"
+        android:inputType="datetime"/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="血糖" />
-
-    <EditText
-        android:id="@+id/bless_suger"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="mmo/l"
-        android:inputType="number"/>
     <Button
         android:id="@+id/test"
         android:layout_width="match_parent"
@@ -62,14 +52,6 @@
         android:layout_marginTop="20dp"
         android:background="@color/color_main"
         android:textColor="@color/bg_white"
-        android:onClick="test"
-        android:text="开始测试" />
-    <TextView
-        android:id="@+id/result"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:layout_marginTop="20dp"
-        android:textSize="24dp"
-        android:textColor="@color/red" />
+        android:onClick="save"
+        android:text="保存" />
 </LinearLayout>

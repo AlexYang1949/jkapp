@@ -1,9 +1,14 @@
 package com.jk.wyq.jkapp.BaseModule;
 
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Camera;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +18,9 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.jk.wyq.jkapp.HealthModule.AddTimeActivity;
 import com.jk.wyq.jkapp.HealthModule.HealthSelectActivity;
+import com.jk.wyq.jkapp.HealthModule.TimeBean;
 import com.jk.wyq.jkapp.HeartBeatModule.HeartBeatActivity;
 import com.jk.wyq.jkapp.R;
 import com.jk.wyq.jkapp.StepModule.activity.StepActivity;
@@ -84,33 +91,33 @@ public class HomeFragment extends Fragment {
         return view;
     }
 
-    @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-    }
-
-    @Override
-    public void onStart() {
-
-        super.onStart();
-    }
-
     public void initData(){
         dataList = new ArrayList<>();
+        SharedPreferencesUtils sp = new SharedPreferencesUtils(getActivity(),"stepplan");
+        String planWalk = (String) sp.getParam("planWalk_QTY", "7000");
         HomeBean home1 = new HomeBean(HomeAdapter.TYPE_STEP);
         home1.step = DataManager.currentStep(getContext()).step;
+        home1.plan = planWalk;
         HomeBean home2 = new HomeBean(HomeAdapter.TYPE_HEALTH);
         home2.bmi = DataManager.healthBean(getContext()).bmi;
         home2.date = DataManager.healthBean(getContext()).date;
         HomeBean home3 = new HomeBean(HomeAdapter.TYPE_WEATHER);
-
-        HomeBean home4 = new HomeBean(HomeAdapter.TYPE_TIME,"睡觉","22:00");
-        HomeBean home5 = new HomeBean(HomeAdapter.TYPE_TIME,"喝水","19:00");
         dataList.add(home1);
         dataList.add(home2);
         dataList.add(home3);
-        dataList.add(home4);
-        dataList.add(home5);
+
+        // 健康提示
+        List<TimeBean> timeList = DataManager.timeBean(getActivity());
+        if (timeList==null||timeList.size()==0){
+            HomeBean home = new HomeBean(HomeAdapter.TYPE_TIME,"点击添加提示","");
+            dataList.add(home);
+        }else {
+            for(TimeBean bean:timeList){
+                HomeBean home = new HomeBean(HomeAdapter.TYPE_TIME,bean.name,bean.time);
+                dataList.add(home);
+            }
+        }
+
         HomeAdapter adapter = new HomeAdapter(getActivity(), dataList);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -121,14 +128,31 @@ public class HomeFragment extends Fragment {
                     gotoJKTest();
                 }else if(dataList.get(position).type==HomeAdapter.TYPE_STEP){
                     gotoStepAct();
+                }else if(dataList.get(position).type==HomeAdapter.TYPE_TIME){
+                    gotoTime();
                 }
-//                Toast.makeText(getContext(),"您选择了" + dataList.get(position), Toast.LENGTH_LONG).show();
             }
         });
     }
 
     // 跳转心跳activity
     private void gotoHeartBeatAct(){
+
+        if (ContextCompat.checkSelfPermission(getActivity(),
+                Manifest.permission.CAMERA)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            // Should we show an explanation?
+            if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(),
+                    Manifest.permission.CAMERA)) {
+            } else {
+                ActivityCompat.requestPermissions(getActivity(),
+                        new String[]{Manifest.permission.CAMERA},
+                        2);
+            }
+            return;
+        }
+
         Intent intent = new Intent(getActivity(), HeartBeatActivity.class);
         startActivity(intent);
     }
@@ -143,6 +167,13 @@ public class HomeFragment extends Fragment {
     private  void gotoJKTest(){
         if(!DataManager.isLogin(getActivity())) return;
         Intent intent = new Intent(getActivity(), HealthSelectActivity.class);
+        startActivity(intent);
+    }
+
+    // 跳转添加健康时间activity
+    private  void gotoTime(){
+        if(!DataManager.isLogin(getActivity())) return;
+        Intent intent = new Intent(getActivity(), AddTimeActivity.class);
         startActivity(intent);
     }
 

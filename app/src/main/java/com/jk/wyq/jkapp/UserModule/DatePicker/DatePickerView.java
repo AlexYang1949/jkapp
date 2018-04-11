@@ -362,11 +362,11 @@ public class DatePickerView extends LinearLayout {
     public void setRightTitle(boolean flag){
         this.isSignIn = flag;
         if(isSignIn){
-            mySignIn.setText("已签到");
-            mySignIn.setTextColor(mContext.getResources().getColor(R.color.color_main));
+            mySignIn.setText("已打卡");
+            mySignIn.setTextColor(mContext.getResources().getColor(R.color.bg_white));
             signIn.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.box_blue_solid));
         }else{
-            mySignIn.setText("未签到");
+            mySignIn.setText("未打卡");
             mySignIn.setTextColor(mContext.getResources().getColor(R.color.grey));
             signIn.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.box_gray_solid));
         }

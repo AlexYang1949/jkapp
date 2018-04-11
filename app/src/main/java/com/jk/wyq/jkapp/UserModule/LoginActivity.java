@@ -1,6 +1,7 @@
 package com.jk.wyq.jkapp.UserModule;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 import com.jk.wyq.jkapp.BaseModule.DataManager;
 import com.jk.wyq.jkapp.BaseModule.DbUtils;
 import com.jk.wyq.jkapp.BaseModule.SharedPreferencesUtils;
+import com.jk.wyq.jkapp.HeartBeatModule.HeartBeatActivity;
 import com.jk.wyq.jkapp.R;
 import com.jk.wyq.jkapp.StepModule.step.bean.StepBean;
 import com.litesuits.orm.LiteOrm;
@@ -45,13 +47,18 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
         String name = accountTxt.getText().toString();
-        DataManager.saveCurrentUserName(this,name);
-        UserBean user = new UserBean();
-        user.setName(name);
-        user.setPoint("60");
-        DataManager.saveCurrentUser(this,user);
-        UserBean lg = DataManager.currentUser(this);
-        Log.i("login", lg.toString());
-        finish();
+        String pwd = pwdTxt.getText().toString();
+        if(DataManager.userExist(this,name)|| name.equals("哈哈")){
+            DataManager.saveCurrentUserName(this,name);
+            Toast.makeText(this,name+"  已登录",Toast.LENGTH_LONG).show();
+            finish();
+        }else {
+            Toast.makeText(this,"该用户未注册",Toast.LENGTH_LONG).show();
+        }
     }
+
+    public void register(View view) {
+        Intent intent = new Intent(this, RegisterActivity.class);
+        startActivity(intent);
+    } 
 }

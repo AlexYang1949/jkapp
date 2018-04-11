@@ -109,7 +109,13 @@
         <activity
             android:name=".BaseModule.WebActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".UserModule.PunchActivity"></activity>
+        <activity android:name=".UserModule.PunchActivity" />
+        <activity
+            android:name=".UserModule.RegisterActivity"
+            android:label="@string/title_activity_register"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".HealthModule.TimesListActivity" />
+        <activity android:name=".HealthModule.AddTimeActivity"></activity>
     </application>
 
 </manifest>

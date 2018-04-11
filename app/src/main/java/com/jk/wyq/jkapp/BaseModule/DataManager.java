@@ -9,6 +9,7 @@ import android.view.inputmethod.InputMethodManager;
 
 import com.jk.wyq.jkapp.HealthModule.AdvanceHealthActivity;
 import com.jk.wyq.jkapp.HealthModule.HealthBean;
+import com.jk.wyq.jkapp.HealthModule.TimeBean;
 import com.jk.wyq.jkapp.StepModule.step.bean.StepBean;
 import com.jk.wyq.jkapp.UserModule.LoginActivity;
 import com.jk.wyq.jkapp.UserModule.UserBean;
@@ -47,6 +48,7 @@ public class DataManager {
             return user;
         }
     }
+
 
     public static void saveCurrentUser(Context context,UserBean user){
         String name = DataManager.currentUserName(context);
@@ -91,6 +93,7 @@ public class DataManager {
         } else if (list.size() == 1) {
             StepBean data = list.get(0);
             data.step = tempStep + "";
+            data.name = name;
             DbUtils.update(data);
         }
     }
@@ -118,9 +121,23 @@ public class DataManager {
         }
     }
 
+    public static List<TimeBean> timeBean(Context context){
+        String name = DataManager.currentUserName(context);
+        List<TimeBean> list = DbUtils.getQueryByWhere(TimeBean.class,"name",new String[]{name});
+        if (list.size() != 0) {
+            return list;
+        } else {
+            return null;
+        }
+    }
 
+    public static void saveTimeBean(Context context,TimeBean timeBean){
+        String name = DataManager.currentUserName(context);
+        timeBean.name = name;
+        DbUtils.insert(timeBean);
+    }
 
-
+    // 是否登录
     public static boolean isLogin(Context context){
         boolean login = DataManager.currentUserName(context) != "";
         Log.i("isLogin:", DataManager.currentUserName(context));
@@ -130,17 +147,82 @@ public class DataManager {
         return login;
     }
 
+    // 用户是否存在
+    public static Boolean userExist(Context context,String name){
+        List<UserBean> list = DbUtils.getQueryByWhere(UserBean.class,"name",new String[]{name});
+        Log.i("list", list.toString());
+        if (list.size() == 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    // 健康报告
+    public static String healthReport(Context context){
+        String report = "";
+        HealthBean health = DataManager.healthBean(context);
+        if (health.bmi!=null) {
+            float bmif = Float.parseFloat(health.bmi);
+            String bmi = health.bmi;
+            if (bmif < 18.5) {
+                report += "BMI值为:" + bmi + "   体重过低。";
+            } else if (bmif >= 18.5 && bmif < 24.9) {
+                report += "BMI值为:" + bmi + "   正常范围。";
+            } else {
+                report += "BMI值为:" + bmi + "   超重。";
+            }
+        }
+
+        if (health.presslow!=null) {
+            float lowf = Float.parseFloat(health.presslow);
+            float highf = Float.parseFloat(health.presslow);
+            if (lowf<60||highf<90){
+                report += "血压过低  。";
+            }else if (lowf>90||highf>140){
+                report += "血压过高  。";
+            }else {
+                report += "血压正常  。";
+            }
+        }
+
+        if (health.bloodsugar!=null) {
+            float bloodsugar = Float.parseFloat(health.bloodsugar);
+            if (bloodsugar<3.9){
+                report += "血糖过低  。";
+            }else if (bloodsugar<6.1){
+                report += "血糖过高  。";
+            }else {
+                report += "血糖正常  。";
+            }
+        }
+        if (health.beat!=null) {
+            float beat = Float.parseFloat(health.beat);
+            if (beat<60){
+                report += "心率较慢  。";
+            }else if (beat>100){
+                report += "心率较快  。";
+            }else {
+                report += "心率正常  。";
+            }
+        }
+        if (report == "") report = "您的数据不全无法评估，请点击未录入数据进行基础和进阶测试后查看测试报告";
+        return report;
+    }
+
+    // 健康指数
     public static int healthIndex(){
         return 0;
     }
 
+    // 关闭键盘
     public static void closeKeyboard(Window window,InputMethodManager manager) {
         View view = window.peekDecorView();
         if (view != null) {
             manager.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
     }
-
+    // 当前日期
     public static String currentDate(){
         Date date = new Date(System.currentTimeMillis());
         return new SimpleDateFormat("yyyy-MM-dd HH:mm").format(date);

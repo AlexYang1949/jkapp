@@ -7,6 +7,8 @@ package com.jk.wyq.jkapp.BaseModule;
 public class HomeBean {
     public int type;
 
+    public String plan;
+
     public String step;
 
     public String tip;

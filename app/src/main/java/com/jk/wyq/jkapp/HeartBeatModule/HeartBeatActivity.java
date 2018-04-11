@@ -33,7 +33,11 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import com.jk.wyq.jkapp.BaseModule.DataManager;
+import com.jk.wyq.jkapp.HealthModule.HealthBean;
 import com.jk.wyq.jkapp.R;
+import com.jk.wyq.jkapp.UserModule.UserBean;
+
 /**
  * 程序的主入口
  */
@@ -100,6 +104,7 @@ public class HeartBeatActivity extends Activity {
     //开始时间
     private static long startTime = 0;
 
+    private static String saveHb = "";
 
 
     @Override
@@ -108,6 +113,7 @@ public class HeartBeatActivity extends Activity {
         setContentView(R.layout.activity_heart_beat);
         initConfig();
     }
+
 
     /**
      * 初始化配置
@@ -182,6 +188,7 @@ public class HeartBeatActivity extends Activity {
     @Override
     public void onDestroy() {
         //当结束程序时关掉Timer
+        saveHeartBeat();
         timer.cancel();
         super.onDestroy();
     };
@@ -418,9 +425,9 @@ public class HeartBeatActivity extends Activity {
                     }
                 }
                 int beatsAvg = (beatsArrayAvg / beatsArrayCnt);
-
-
-                mTV_Heart_Rate.setText("心率："+String.valueOf(beatsAvg)+"次/分");
+                String beat = String.valueOf(beatsAvg);
+                saveHb = beat;
+                mTV_Heart_Rate.setText("心率："+beat+"次/分");
 
 //                mTV_Heart_Test.setText(String.valueOf(beatsAvg) +
 //                        "  值" + String.valueOf(beatsArray.length) +
@@ -491,5 +498,19 @@ public class HeartBeatActivity extends Activity {
             }
         }
         return result;
+    }
+
+    private void saveHeartBeat(){
+        if (saveHb != ""){
+            HealthBean hb = DataManager.healthBean(this);
+            hb.beat = saveHb;
+            DataManager.saveHealthBean(this,hb);
+
+            Toast.makeText(this,"测试完成！奖励10积分！",Toast.LENGTH_LONG).show();
+            UserBean user = DataManager.currentUser(this);
+            int point = Integer.parseInt(user.getPoint())+10;
+            user.setPoint(point+"");
+            DataManager.saveCurrentUser(this,user);
+        }
     }
 }

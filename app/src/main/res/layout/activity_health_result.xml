@@ -11,7 +11,10 @@
         android:id="@+id/health_result"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="健康提示：你的身体比较健康，请继续保持！" />
+        android:textSize="16dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:textColor="@color/color_main"/>
 
     <ListView
         android:id="@+id/health_list"

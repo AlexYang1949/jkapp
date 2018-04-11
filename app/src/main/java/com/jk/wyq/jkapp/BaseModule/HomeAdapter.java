@@ -59,6 +59,8 @@ public class HomeAdapter extends BaseAdapter {
         }else if (type==TYPE_STEP){
             view = inflater.inflate(R.layout.item_home_step, null);
             TextView finish = (TextView) view.findViewById(R.id.finish);
+            TextView plan = (TextView) view.findViewById(R.id.plan);
+            plan.setText(bean.plan);
             finish.setText(bean.step);
         }else if(type==TYPE_TIME){
             view = inflater.inflate(R.layout.item_home_time, null);

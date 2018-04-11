@@ -13,6 +13,8 @@ import android.widget.Toast;
 
 import com.jk.wyq.jkapp.BaseModule.DataManager;
 import com.jk.wyq.jkapp.R;
+import com.jk.wyq.jkapp.UserModule.UserBean;
+
 public class BaseHealthActivity extends AppCompatActivity {
 
     TextView resultView;
@@ -36,14 +38,13 @@ public class BaseHealthActivity extends AppCompatActivity {
             return;
         }
 
-        HealthBean health = new HealthBean();
+        HealthBean health = DataManager.healthBean(this);
         health.height = txt_height.getText().toString();
         health.weight = txt_wight.getText().toString();
         health.age = txt_age.getText().toString();
         Integer height = Integer.parseInt(health.height);
         Integer weight = Integer.parseInt(health.weight);
         Integer age = Integer.parseInt(health.age);
-
 
         float result = weight*10000/height/height;
         String resultStr = "";
@@ -59,6 +60,13 @@ public class BaseHealthActivity extends AppCompatActivity {
         health.bmi = bmi;
         health.date = DataManager.currentDate();
         resultView.setText(resultStr);
+
+        Toast.makeText(this,"测试完成！奖励10积分！",Toast.LENGTH_LONG).show();
+        UserBean user = DataManager.currentUser(this);
+        int point = Integer.parseInt(user.getPoint())+10;
+        user.setPoint(point+"");
+        DataManager.saveCurrentUser(this,user);
+
         DataManager.saveHealthBean(this,health);
         DataManager.closeKeyboard(getWindow(),(InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE));
     }
