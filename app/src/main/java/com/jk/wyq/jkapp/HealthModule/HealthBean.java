@@ -6,7 +6,7 @@ import com.litesuits.orm.db.annotation.Table;
 import com.litesuits.orm.db.enums.AssignType;
 
 /**
- * Created by yangzhaoheng on 2018/3/1.
+ * Created by wangyuqi on 2018/3/1.
  */
 
 @Table("health")

@@ -1,14 +1,22 @@
 package com.jk.wyq.jkapp.BaseModule;
 
+import android.app.AlarmManager;
 import android.app.Fragment;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Intent;
+import android.os.SystemClock;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 
 import com.jk.wyq.jkapp.MineModule.MineFragment;
 import com.jk.wyq.jkapp.R;
+import com.jk.wyq.jkapp.StepModule.activity.StepActivity;
 import com.jk.wyq.jkapp.TipsModule.TipsFragment;
 
 import android.view.View;
@@ -88,4 +96,6 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
         if(tipsFragment != null)fragmentTransaction.hide(tipsFragment);
         if(mineFragment != null)fragmentTransaction.hide(mineFragment);
     }
+
+
 }

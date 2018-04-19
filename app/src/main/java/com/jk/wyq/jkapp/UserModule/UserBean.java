@@ -10,7 +10,7 @@ import com.litesuits.orm.db.enums.Relation;
 import java.util.ArrayList;
 
 /**
- * Created by yangzhaoheng on 2018/4/7.
+ * Created by wangyuqi on 2018/4/7.
  */
 
 @Table("user")

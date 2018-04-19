@@ -35,29 +35,30 @@ public class PunchActivity extends AppCompatActivity implements DatePickerView.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_punch);
         myDatepicker = findViewById(R.id.datepicker);
-
-        UserBean user = DataManager.currentUser(this);
-        int point = Integer.parseInt(user.point)+10;
-        user.point = point+"";
-        DataManager.saveCurrentUser(this,user);
+        init();
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        init();
+    private void punch(){
+        UserBean user = DataManager.currentUser(this);
+        int point = Integer.parseInt(user.point)+10;
+        Log.i("point", "punch: "+point);
+        user.point = point+"";
+        DataManager.saveCurrentUser(this,user);
     }
 
     private void init() {
         dpcManager = DPCManager.getInstance();
         dpcManager.clearnDATE_CACHE(); //清除cache
-
-        //自定义背景绘制示例
+        if (!DataManager.isPunchToday(this)){
+            punch();
+        }
+        List<PunchBean> punchList = DataManager.punchBean(this);
         List<String> tmp = new ArrayList<>();
-        tmp.add(DataManager.currentDate());
+        for(PunchBean punch:punchList){
+            if(DataManager.isMonth(punch.date)) tmp.add(punch.date);
+        }
         Log.i("init: ", DataManager.currentDate());
         dpcManager.setDecorBG(tmp); //预先设置日期背景 一定要在在开始设置
-
         Date date = new Date(System.currentTimeMillis());
         Calendar calendar=Calendar.getInstance();
         calendar.setTime(date);

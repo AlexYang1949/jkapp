@@ -112,7 +112,6 @@ public class SetPlanActivity extends AppCompatActivity implements View.OnClickLi
 
     private void save() {
         walk_qty = tv_step_number.getText().toString().trim();
-//        remind = "";
         if (cb_remind.isChecked()) {
             remind = "1";
         } else {

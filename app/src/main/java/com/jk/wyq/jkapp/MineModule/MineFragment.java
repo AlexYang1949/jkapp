@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jk.wyq.jkapp.BaseModule.DataManager;
+import com.jk.wyq.jkapp.BaseModule.NotificationManager;
 import com.jk.wyq.jkapp.BaseModule.SharedPreferencesUtils;
 import com.jk.wyq.jkapp.BaseModule.WebActivity;
 import com.jk.wyq.jkapp.HealthModule.HealthResultActivity;
@@ -52,6 +53,7 @@ public class MineFragment extends Fragment {
             txt_point.setText(point);
         }
         super.onResume();
+        NotificationManager.addAlert(getActivity(),"","");
     }
 
     @Override

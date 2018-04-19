@@ -3,7 +3,7 @@ package com.jk.wyq.jkapp.TipsModule;
 import java.io.Serializable;
 
 /**
- * Created by yangzhaoheng on 2018/4/1.
+ * Created by wangyuqi on 2018/4/1.
  */
 
 public class TipsBean implements Serializable{

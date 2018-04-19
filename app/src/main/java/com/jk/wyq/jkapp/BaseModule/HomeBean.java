@@ -1,7 +1,7 @@
 package com.jk.wyq.jkapp.BaseModule;
 
 /**
- * Created by yangzhaoheng on 2018/2/27.
+ * Created by wangyuqi on 2018/2/27.
  */
 
 public class HomeBean {

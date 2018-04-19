@@ -14,7 +14,7 @@ import com.jk.wyq.jkapp.R;
 import java.util.List;
 
 /**
- * Created by yangzhaoheng on 2018/2/27.
+ * Created by wangyuqi on 2018/2/27.
  */
 
 public class HomeAdapter extends BaseAdapter {

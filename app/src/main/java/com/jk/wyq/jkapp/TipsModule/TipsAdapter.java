@@ -12,22 +12,24 @@ import com.jk.wyq.jkapp.R;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.List;
+
 /**
- * Created by yangzhaoheng on 2018/4/1.
+ * Created by wangyuqi on 2018/4/1.
  */
 
 public class TipsAdapter extends BaseAdapter{
-    private JSONArray tipsArray;
+    private List<JSONObject> tipsArray;
     private Context mContext;
 
-    public TipsAdapter(JSONArray tipsArray,Context context){
+    public TipsAdapter(List tipsArray,Context context){
         this.tipsArray = tipsArray;
         this.mContext = context;
     }
 
     @Override
     public int getCount() {
-        return tipsArray.length();
+        return tipsArray.size();
     }
 
     @Override

@@ -2,6 +2,7 @@ package com.jk.wyq.jkapp.BaseModule;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -12,14 +13,22 @@ import com.jk.wyq.jkapp.HealthModule.HealthBean;
 import com.jk.wyq.jkapp.HealthModule.TimeBean;
 import com.jk.wyq.jkapp.StepModule.step.bean.StepBean;
 import com.jk.wyq.jkapp.UserModule.LoginActivity;
+import com.jk.wyq.jkapp.UserModule.PunchBean;
 import com.jk.wyq.jkapp.UserModule.UserBean;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 /**
- * Created by yangzhaoheng on 2018/4/8.
+ * Created by wangyuqi on 2018/4/8.
  */
 
 public class DataManager {
@@ -55,7 +64,7 @@ public class DataManager {
         if (list.size() == 1) {
             DbUtils.update(user);
         } else {
-            user.point = "0";
+            user.name = name;
             DbUtils.insert(user);
         }
     }
@@ -130,6 +139,7 @@ public class DataManager {
         }
     }
 
+    // 健康提示
     public static List<TimeBean> timeBean(Context context){
         String name = DataManager.currentUserName(context);
         List<TimeBean> list = DbUtils.getQueryByWhere(TimeBean.class,"name",new String[]{name});
@@ -144,6 +154,34 @@ public class DataManager {
         String name = DataManager.currentUserName(context);
         timeBean.name = name;
         DbUtils.insert(timeBean);
+    }
+
+    // 打卡记录
+    public static List<PunchBean> punchBean(Context context){
+        String name = DataManager.currentUserName(context);
+        List<PunchBean> list = DbUtils.getQueryByWhere(PunchBean.class,"name",new String[]{name});
+        if (list.size() != 0) {
+            return list;
+        } else {
+            return null;
+        }
+    }
+
+    public static boolean isPunchToday(Context context){
+
+        String name = DataManager.currentUserName(context);
+        String date = DataManager.currentDate();
+        List<PunchBean> list = DbUtils.getQueryByWhere2(PunchBean.class,"name","date",new String[]{name,date});
+        Log.i("punch", "isPunchToday: "+list);
+        if (list.size() == 1) {
+            return true;
+        } else {
+            PunchBean bean = new PunchBean();
+            bean.name = name;
+            bean.date = date;
+            DbUtils.insert(bean);
+            return false;
+        }
     }
 
     // 是否登录
@@ -224,6 +262,110 @@ public class DataManager {
         return 0;
     }
 
+    public static List<String> needTips(Context context) {
+        List<String> list = new ArrayList<>();
+        HealthBean health = DataManager.healthBean(context);
+        if (health.bmi != null) {
+            float bmif = Float.parseFloat(health.bmi);
+            String bmi = health.bmi;
+            if (bmif < 18.5 || bmif > 24.9) {
+                list.add("weight");
+            }
+        }
+        if (health.presslow != null) {
+            float lowf = Float.parseFloat(health.presslow);
+            float highf = Float.parseFloat(health.presslow);
+            if (lowf < 60 || highf < 90) {
+                list.add("press");
+            } else if (lowf > 90 || highf > 140) {
+                list.add("press");
+            }
+        }
+
+        if (health.bloodsugar != null) {
+            float bloodsugar = Float.parseFloat(health.bloodsugar);
+            if (bloodsugar < 3.9) {
+                list.add("sugar");
+            } else if (bloodsugar < 6.1) {
+                list.add("sugar");
+            }
+        }
+        if (health.beat != null) {
+            float beat = Float.parseFloat(health.beat);
+            if (beat < 60) {
+                list.add("rate");
+            } else if (beat > 100) {
+                list.add("rate");
+            }
+        }
+        return list;
+    }
+
+
+    // 搜索文章
+    public static List<JSONObject> searchTipsWith(Context context,String name){
+        List<String> nameList = new ArrayList<String>();
+        nameList.add("rate");
+        nameList.add("press");
+        nameList.add("sugar");
+        nameList.add("weight");
+        List<JSONObject> list = DataManager.readTipsJson(context,nameList);
+        List<JSONObject> resultList = new ArrayList<>();
+        for (JSONObject item:list){
+            try {
+                String title = (String)item.get("title");
+                String content = (String)item.get("content");
+                if (title.indexOf(name)!=-1||content.indexOf(name)!=-1){
+                    resultList.add(item);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return resultList;
+    }
+
+
+    // 读取json文件
+    public static List<JSONObject> readTipsJson(Context context,List<String> list){
+        StringBuilder sb = new StringBuilder();
+        AssetManager am = context.getAssets();
+        try {
+            BufferedReader br = new BufferedReader(new InputStreamReader(
+                    am.open("tips.json")));
+            String next = "";
+            while (null != (next = br.readLine())) {
+                sb.append(next);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            sb.delete(0, sb.length());
+        }
+        try {
+            List<JSONObject> resultlist = new ArrayList<>();
+            Log.i("tips", "readTipsJson: "+sb);
+            JSONObject jObject = new JSONObject(sb.toString());
+            JSONObject jsono =  (JSONObject) jObject.getJSONObject("data");
+
+            list.add("general");
+            Log.i("readTipsJson", "readTipsJson: "+jsono);
+            for (String key:list){
+                JSONArray array = (JSONArray) jsono.getJSONArray(key);
+                Log.i("jsonarray", "readTipsJson: "+array);
+                if(array.length()>0){
+                    for(int i=0;i<array.length();i++){
+                        JSONObject job = (JSONObject)array.get(i);
+                        resultlist.add(job);
+                    }
+                }
+            }
+            return resultlist;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     // 关闭键盘
     public static void closeKeyboard(Window window,InputMethodManager manager) {
         View view = window.peekDecorView();
@@ -242,5 +384,11 @@ public class DataManager {
     public static String currentTime(){
         Date date = new Date(System.currentTimeMillis());
         return new SimpleDateFormat("yyyy-MM-dd HH:mm").format(date);
+    }
+
+    // 判断当前日期是不是本月
+    public static boolean isMonth(String date){
+        String pre = DataManager.currentDate().substring(0,7);
+        return (date.indexOf(pre) != -1);
     }
 }

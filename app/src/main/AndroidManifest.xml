@@ -60,7 +60,6 @@
             android:name=".StepModule.step.service.StepService"
             android:priority="1000">
             <intent-filter>
-
                 <!-- 系统启动完成后会调用 -->
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.intent.action.DATE_CHANGED" />
@@ -74,9 +73,8 @@
         <service
             android:name=".StepModule.pedometer.StepsDetectService"
             android:priority="1000"
-            android:process="cn.bluemobi.dylan.step..pedometer.StepsDetectService">
+            android:process=".StepsDetectService">
             <intent-filter>
-
                 <!-- 系统启动完成后会调用 -->
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.intent.action.DATE_CHANGED" />
@@ -87,6 +85,16 @@
                 <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
             </intent-filter>
         </service>
+
+        <receiver
+            android:name=".BaseModule.AutoReceiver"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </receiver>
 
         <activity
             android:name=".HeartBeatModule.HeartBeatActivity"
