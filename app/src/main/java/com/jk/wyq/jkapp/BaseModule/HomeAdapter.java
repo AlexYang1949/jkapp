@@ -6,7 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.jk.wyq.jkapp.R;
 
@@ -54,6 +57,7 @@ public class HomeAdapter extends BaseAdapter {
         HomeBean bean = dataList.get(i);
         int type = bean.type;
 
+
         if (type==TYPE_WEATHER){
             view = inflater.inflate(R.layout.item_home_weather, null);
         }else if (type==TYPE_STEP){
@@ -68,10 +72,12 @@ public class HomeAdapter extends BaseAdapter {
             txt_tip.setText(bean.tip);
             TextView txt_time = (TextView) view.findViewById(R.id.txt_time);
             txt_time.setText(bean.time);
+
         }else if(type==TYPE_HEALTH) {
             view = inflater.inflate(R.layout.item_home_health, null);
             TextView txt_health = (TextView) view.findViewById(R.id.txt_health);
             TextView txt_date = (TextView) view.findViewById(R.id.txt_date);
+
             if (bean.bmi == null){
                 txt_health.setText("点击进行基础健康测试");
             }else {
@@ -82,6 +88,9 @@ public class HomeAdapter extends BaseAdapter {
         return view;
     }
 
+    public void onDelete(){
+
+    }
     @Override
     public int getViewTypeCount() {
         return TYPE_COUNT;

@@ -10,6 +10,7 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.jk.wyq.jkapp.BaseModule.DataManager;
+import com.jk.wyq.jkapp.BaseModule.NotificationManager;
 import com.jk.wyq.jkapp.R;
 import com.jk.wyq.jkapp.UserModule.UserBean;
 
@@ -44,6 +45,7 @@ public class AddTimeActivity extends Activity {
         time.time = txt_time.getText().toString();
         DataManager.saveTimeBean(this,time);
 
+        NotificationManager.addAlert(this,"111",time.tip);
         Toast.makeText(this,"保存成功！奖励10积分！",Toast.LENGTH_LONG).show();
         UserBean user = DataManager.currentUser(this);
         int point = Integer.parseInt(user.point)+10;

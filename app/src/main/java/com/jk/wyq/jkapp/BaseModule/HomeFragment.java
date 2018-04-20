@@ -2,10 +2,12 @@ package com.jk.wyq.jkapp.BaseModule;
 
 
 import android.Manifest;
+import android.app.AlertDialog;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Camera;
@@ -128,7 +130,7 @@ public class HomeFragment extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position,
-                                    long id) {
+                                    long id){
                 if(dataList.get(position).type==HomeAdapter.TYPE_HEALTH){
                     gotoJKTest();
                 }else if(dataList.get(position).type==HomeAdapter.TYPE_STEP){
@@ -136,6 +138,40 @@ public class HomeFragment extends Fragment {
                 }else if(dataList.get(position).type==HomeAdapter.TYPE_TIME){
                     gotoTime();
                 }
+            }
+        });
+
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view,
+                                           final int position, long id) {
+                if (position<=2) return true;
+                //定义AlertDialog.Builder对象，当长按列表项的时候弹出确认删除对话框
+                AlertDialog.Builder builder=new AlertDialog.Builder(getActivity());
+                builder.setMessage("确定删除?");
+                builder.setTitle("提示");
+                //添加AlertDialog.Builder对象的setPositiveButton()方法
+                builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dataList.remove(position);
+                        if(dataList.size()==3){
+                            HomeBean home = new HomeBean(HomeAdapter.TYPE_TIME,"点击添加提示","");
+                            dataList.add(home);
+                        }
+                        HomeAdapter adapter = new HomeAdapter(getActivity(), dataList);
+                        listView.setAdapter(adapter);
+                    }
+                });
+
+                //添加AlertDialog.Builder对象的setNegativeButton()方法
+                builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {}
+                });
+
+                builder.create().show();
+                return true;
             }
         });
     }

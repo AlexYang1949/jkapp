@@ -172,7 +172,6 @@ public class DataManager {
         String name = DataManager.currentUserName(context);
         String date = DataManager.currentDate();
         List<PunchBean> list = DbUtils.getQueryByWhere2(PunchBean.class,"name","date",new String[]{name,date});
-        Log.i("punch", "isPunchToday: "+list);
         if (list.size() == 1) {
             return true;
         } else {
@@ -343,15 +342,11 @@ public class DataManager {
         }
         try {
             List<JSONObject> resultlist = new ArrayList<>();
-            Log.i("tips", "readTipsJson: "+sb);
             JSONObject jObject = new JSONObject(sb.toString());
             JSONObject jsono =  (JSONObject) jObject.getJSONObject("data");
-
             list.add("general");
-            Log.i("readTipsJson", "readTipsJson: "+jsono);
             for (String key:list){
                 JSONArray array = (JSONArray) jsono.getJSONArray(key);
-                Log.i("jsonarray", "readTipsJson: "+array);
                 if(array.length()>0){
                     for(int i=0;i<array.length();i++){
                         JSONObject job = (JSONObject)array.get(i);
