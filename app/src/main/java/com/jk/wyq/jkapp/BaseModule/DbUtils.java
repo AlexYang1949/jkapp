@@ -109,7 +109,7 @@ public class DbUtils {
      * @param value
      */
     public static <T> int deleteWhere(Class<T> cla, String field, String[] value) {
-        return liteOrm.delete(cla, new WhereBuilder(cla).where(field + "!=?", value));
+        return liteOrm.delete(cla, new WhereBuilder(cla).where(field + "=?", value));
     }
 
     /**

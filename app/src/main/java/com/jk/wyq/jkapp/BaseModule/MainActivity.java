@@ -14,6 +14,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 
+import com.jk.wyq.jkapp.HealthModule.AddTimeActivity;
+import com.jk.wyq.jkapp.HealthModule.TimeBean;
 import com.jk.wyq.jkapp.MineModule.MineFragment;
 import com.jk.wyq.jkapp.R;
 import com.jk.wyq.jkapp.StepModule.activity.StepActivity;
@@ -22,6 +24,9 @@ import com.jk.wyq.jkapp.TipsModule.TipsFragment;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+
+import java.util.Calendar;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener{
 
@@ -43,6 +48,7 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
         rb_channel = (RadioButton) findViewById(R.id.rb_home);
         rb_channel.setChecked(true);
         DbUtils.createDb(this);
+
     }
 
     @Override
@@ -96,6 +102,4 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
         if(tipsFragment != null)fragmentTransaction.hide(tipsFragment);
         if(mineFragment != null)fragmentTransaction.hide(mineFragment);
     }
-
-
 }

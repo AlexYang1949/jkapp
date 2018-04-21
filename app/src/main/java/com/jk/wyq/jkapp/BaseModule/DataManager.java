@@ -150,6 +150,10 @@ public class DataManager {
         }
     }
 
+    public static void remove(Context context,TimeBean timeBean){
+        DbUtils.deleteWhere(TimeBean.class,"id",new String[]{timeBean.id+""});
+    }
+
     public static void saveTimeBean(Context context,TimeBean timeBean){
         String name = DataManager.currentUserName(context);
         timeBean.name = name;

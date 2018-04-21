@@ -19,7 +19,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jk.wyq.jkapp.BaseModule.DataManager;
-import com.jk.wyq.jkapp.BaseModule.NotificationManager;
 import com.jk.wyq.jkapp.BaseModule.WebActivity;
 import com.jk.wyq.jkapp.R;
 

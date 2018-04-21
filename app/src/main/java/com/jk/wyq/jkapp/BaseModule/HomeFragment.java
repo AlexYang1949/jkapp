@@ -58,7 +58,6 @@ public class HomeFragment extends Fragment {
         // Required empty public constructor
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -121,6 +120,7 @@ public class HomeFragment extends Fragment {
         }else {
             for(TimeBean time:timeList){
                 HomeBean home = new HomeBean(HomeAdapter.TYPE_TIME,time.tip,time.time);
+                NotiManager.addAlert(getActivity(),time.time,time.tip,time.id);
                 dataList.add(home);
             }
         }
@@ -155,6 +155,8 @@ public class HomeFragment extends Fragment {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dataList.remove(position);
+                        List<TimeBean> timeList = DataManager.timeBean(getActivity());
+                        DataManager.remove(getActivity(),(TimeBean)timeList.get(position-3));
                         if(dataList.size()==3){
                             HomeBean home = new HomeBean(HomeAdapter.TYPE_TIME,"点击添加提示","");
                             dataList.add(home);
@@ -221,6 +223,4 @@ public class HomeFragment extends Fragment {
     public void login(){
         DataManager.isLogin(getActivity());
     }
-
-
 }

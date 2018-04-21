@@ -22,4 +22,5 @@ public class TimeBean {
 
     @Column("tip")
     public String tip;
+
 }
