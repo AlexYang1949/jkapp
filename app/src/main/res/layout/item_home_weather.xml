@@ -22,44 +22,43 @@
         android:layout_width="match_parent"
         android:layout_height="60dp">
 
-        <ImageView
-            android:id="@+id/icon"
-            android:layout_width="53dp"
-            android:layout_height="53dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_centerVertical="true"
-            android:paddingLeft="10dp"
-            android:src="@mipmap/sun" />
+        <!--<ImageView-->
+            <!--android:id="@+id/icon"-->
+            <!--android:layout_width="53dp"-->
+            <!--android:layout_height="53dp"-->
+            <!--android:layout_alignParentLeft="true"-->
+            <!--android:layout_alignParentTop="true"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:paddingLeft="10dp"-->
+            <!--android:src="@mipmap/head" />-->
 
         <TextView
-            android:id="@+id/textView1"
-            android:layout_width="80dp"
-            android:layout_height="wrap_content"
+            android:id="@+id/weather"
+            android:layout_width="120dp"
+            android:layout_height="60dp"
             android:layout_centerVertical="true"
             android:layout_marginTop="2dp"
-            android:layout_toRightOf="@+id/icon"
+            android:layout_alignParentLeft="true"
             android:layout_marginLeft="20dp"
-            android:text="15°C"
-            android:textSize="26dp"
-            android:textStyle="bold" />
+            android:textSize="20dp"
+            android:textStyle="bold"/>
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/tip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/textView1"
-            android:layout_alignTop="@+id/icon"
+            android:layout_toRightOf="@+id/weather"
+            android:layout_alignTop="@+id/weather"
             android:layout_marginLeft="20dp"
             android:text="天气晴，西北风1-2级" />
 
         <TextView
-            android:id="@+id/textView3"
-            android:layout_width="match_parent"
+            android:id="@+id/ganmao"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/icon"
-            android:layout_alignLeft="@+id/textView2"
-            android:layout_marginTop="2dp"
+            android:layout_alignBottom="@+id/weather"
+            android:layout_marginBottom="10dp"
+            android:layout_alignLeft="@+id/tip"
             android:text="适合户外运动"
             android:textColor="@color/red"
             android:textSize="18sp" />

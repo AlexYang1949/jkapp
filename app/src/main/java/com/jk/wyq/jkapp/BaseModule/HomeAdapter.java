@@ -60,6 +60,12 @@ public class HomeAdapter extends BaseAdapter {
 
         if (type==TYPE_WEATHER){
             view = inflater.inflate(R.layout.item_home_weather, null);
+            TextView weather = (TextView) view.findViewById(R.id.weather);
+            weather.setText(bean.time);
+            TextView tip = (TextView) view.findViewById(R.id.tip);
+            tip.setText(bean.tip);
+            TextView ganmao = (TextView) view.findViewById(R.id.ganmao);
+            ganmao.setText(bean.date);
         }else if (type==TYPE_STEP){
             view = inflater.inflate(R.layout.item_home_step, null);
             TextView finish = (TextView) view.findViewById(R.id.finish);

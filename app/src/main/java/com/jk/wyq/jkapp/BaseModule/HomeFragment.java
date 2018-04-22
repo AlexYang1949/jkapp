@@ -32,6 +32,7 @@ import com.jk.wyq.jkapp.HeartBeatModule.HeartBeatActivity;
 import com.jk.wyq.jkapp.R;
 import com.jk.wyq.jkapp.StepModule.activity.StepActivity;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -97,20 +98,42 @@ public class HomeFragment extends Fragment {
         return view;
     }
 
+    private String  getWeather(){
+        return HttpUtils.get("https://www.sojson.com/open/api/weather/json.shtml?city=北京");
+    }
+
     public void initData(){
+
+
         dataList = new ArrayList<>();
         SharedPreferencesUtils sp = new SharedPreferencesUtils(getActivity(),"stepplan");
         String planWalk = (String) sp.getParam("planWalk_QTY", "7000");
         HomeBean home1 = new HomeBean(HomeAdapter.TYPE_STEP);
         home1.step = DataManager.currentStep(getContext()).step;
-        home1.plan = planWalk;
+        home1.plan = planWalk;//planWalk;
         HomeBean home2 = new HomeBean(HomeAdapter.TYPE_HEALTH);
-        home2.bmi = DataManager.healthBean(getContext()).bmi;
+        home2.bmi = DataManager.healthBean(getContext()).weight;
         home2.date = DataManager.healthBean(getContext()).date;
-        HomeBean home3 = new HomeBean(HomeAdapter.TYPE_WEATHER);
         dataList.add(home1);
         dataList.add(home2);
-        dataList.add(home3);
+
+        String weather = getWeather();
+        try {
+            HomeBean home3 = new HomeBean(HomeAdapter.TYPE_WEATHER);
+            List<JSONObject> resultlist = new ArrayList<>();
+            JSONObject jObject = new JSONObject(weather);
+            JSONObject data = jObject.getJSONObject("data");
+            JSONArray wendua =  data.getJSONArray("forecast");
+            JSONObject wenduo = (JSONObject) wendua.get(0);
+            home3.time = wenduo.getString("high")+"  "+wenduo.getString("low");
+            home3.tip = wenduo.getString("fx")+wenduo.getString("fl")+","+wenduo.getString("type");
+            home3.date = data.getString("ganmao");
+            dataList.add(home3);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
 
         // 健康提示
         List<TimeBean> timeList = DataManager.timeBean(getActivity());
