@@ -49,18 +49,18 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/weather"
             android:layout_alignTop="@+id/weather"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="10dp"
             android:text="天气晴，西北风1-2级" />
 
         <TextView
             android:id="@+id/ganmao"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/weather"
-            android:layout_marginBottom="10dp"
+            android:layout_alignTop="@+id/tip"
+            android:layout_marginTop="15dp"
             android:layout_alignLeft="@+id/tip"
-            android:text="适合户外运动"
+            android:text="极少敏感适极少合户外运动极少"
             android:textColor="@color/red"
-            android:textSize="18sp" />
+            android:textSize="18dp" />
     </RelativeLayout>
 </LinearLayout>

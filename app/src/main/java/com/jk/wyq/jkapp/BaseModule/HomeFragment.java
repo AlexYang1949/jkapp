@@ -118,22 +118,27 @@ public class HomeFragment extends Fragment {
         dataList.add(home2);
 
         String weather = getWeather();
-        try {
-            HomeBean home3 = new HomeBean(HomeAdapter.TYPE_WEATHER);
-            List<JSONObject> resultlist = new ArrayList<>();
-            JSONObject jObject = new JSONObject(weather);
-            JSONObject data = jObject.getJSONObject("data");
-            JSONArray wendua =  data.getJSONArray("forecast");
-            JSONObject wenduo = (JSONObject) wendua.get(0);
-            home3.time = wenduo.getString("high")+"  "+wenduo.getString("low");
-            home3.tip = wenduo.getString("fx")+wenduo.getString("fl")+","+wenduo.getString("type");
-            home3.date = data.getString("ganmao");
+        HomeBean home3 = new HomeBean(HomeAdapter.TYPE_WEATHER);
+        if (weather==null||weather==""){
+            home3.time = "暂无网络连接";
+            home3.tip = "";
+            home3.date = "";
             dataList.add(home3);
-        } catch (Exception e) {
-            e.printStackTrace();
+        }else {
+            try {
+                List<JSONObject> resultlist = new ArrayList<>();
+                JSONObject jObject = new JSONObject(weather);
+                JSONObject data = jObject.getJSONObject("data");
+                JSONArray wendua =  data.getJSONArray("forecast");
+                JSONObject wenduo = (JSONObject) wendua.get(0);
+                home3.time = wenduo.getString("high")+"  "+wenduo.getString("low");
+                home3.tip = wenduo.getString("fx")+wenduo.getString("fl")+","+wenduo.getString("type");
+                home3.date = data.getString("ganmao");
+                dataList.add(home3);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
-
-
 
         // 健康提示
         List<TimeBean> timeList = DataManager.timeBean(getActivity());
