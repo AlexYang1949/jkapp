@@ -22,6 +22,7 @@ import com.jk.wyq.jkapp.R;
 import com.jk.wyq.jkapp.StepModule.activity.StepActivity;
 import com.jk.wyq.jkapp.UserModule.LoginActivity;
 import com.jk.wyq.jkapp.UserModule.PunchActivity;
+import com.jk.wyq.jkapp.UserModule.ShopActivity;
 
 import org.w3c.dom.Text;
 
@@ -68,8 +69,8 @@ public class MineFragment extends Fragment {
             public void onItemClick(AdapterView<?> adapterView, View view, int position,
                                     long id) {
                 if (position==3){
-                    Intent intent=new Intent(getActivity(), WebActivity.class);
-                    intent.putExtra("url", "http://www.39.net");
+                    Intent intent=new Intent(getActivity(), ShopActivity.class);
+//                    intent.putExtra("url", "http://www.39.net");
                     startActivity(intent);
                     // 测步数
                 }else if(position==2){

@@ -60,6 +60,7 @@
             android:name=".StepModule.step.service.StepService"
             android:priority="1000">
             <intent-filter>
+
                 <!-- 系统启动完成后会调用 -->
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.intent.action.DATE_CHANGED" />
@@ -75,6 +76,7 @@
             android:priority="1000"
             android:process=".StepsDetectService">
             <intent-filter>
+
                 <!-- 系统启动完成后会调用 -->
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.intent.action.DATE_CHANGED" />
@@ -112,7 +114,8 @@
             android:name=".UserModule.RegisterActivity"
             android:label="@string/title_activity_register"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".HealthModule.AddTimeActivity"></activity>
+        <activity android:name=".HealthModule.AddTimeActivity" />
+        <activity android:name=".UserModule.ShopActivity"></activity>
     </application>
 
 </manifest>
